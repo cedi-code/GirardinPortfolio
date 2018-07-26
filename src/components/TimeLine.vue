@@ -445,11 +445,6 @@ html, body {
   display: inline-grid;
   grid-template-columns: 5% 5% [spliter] repeat(3,  30%);
 
-  background: url('data:image/svg+xml,\
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
-    <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
-  </svg>');
-  background-size: 50px 50px;
 }
 .date {
   padding-left: 10px;

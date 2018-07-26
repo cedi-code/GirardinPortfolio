@@ -39,7 +39,7 @@
             fahigkeiten: {
               id: 1,
               title: 'Fahigkeiten',
-              link: '/',
+              link: '/skills',
               active: false
             },
             projekte: {
@@ -56,18 +56,6 @@
             }
           }
         }
-      },
-      methods: {
-
-      },
-      created() {
-        this.addChecks()
-      },
-      ready: function () {
-
-      },
-      beforeDestroy: function () {
-        window.removeEventListener('resize', this.handleResize)
       }
     }
 </script>

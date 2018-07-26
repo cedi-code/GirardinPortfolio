@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import TimeLine from '@/components/TimeLine'
 import CV from '@/components/cvComponent'
+import Skills from '@/components/skillsComponent'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       name: 'Home',
       component: TimeLine
     },
+    {
+      path: '/skills',
+      name: 'Fähigkeiten',
+      component: Skills
+    }
 
   ]
 })

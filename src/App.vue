@@ -8,7 +8,7 @@
 
       </ul>
       <ul v-else key="active" class="ulnav">
-        <li >{{this.$router.currentRoute.name}}</li>
+        <li class="navTitle" >{{this.$router.currentRoute.name}}</li>
       </ul>
 
       </transition>
@@ -81,6 +81,11 @@ export default {
 html, body {
   margin: 0;
   padding: 0;
+  background: url('data:image/svg+xml,\
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
+    <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
+  </svg>');
+  background-size: 50px 50px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -145,7 +150,7 @@ html, body {
   padding-top: 5px;
 
 }
-li {
+.navTitle {
   padding: 2.5vh 0;
   transition: letter-spacing .25s ease, width .75s ease;
   color: white;
@@ -156,18 +161,18 @@ li {
   letter-spacing: 7px;
   margin: auto;
 }
-li::before,
-li::after {
+.navTitle::before,
+.navTitle::after {
   content: "";
   background: white;
   height: .1em;
   margin: 0 1em;
 }
 /* TODO diese art von verschiebung noch ändern!!! */
-li::before {
+.navTitle::before {
   flex: .3;
 }
-li::after {
+.navTitle::after {
   flex: .7;
 }
 
