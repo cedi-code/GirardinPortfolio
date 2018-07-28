@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
 import TimeLine from '@/components/TimeLine'
 import CV from '@/components/cvComponent'
 import Skills from '@/components/skillsComponent'
+import work from '@/components/workInProgress'
 
 Vue.use(Router)
 
@@ -17,12 +18,12 @@ export default new Router({
     {
       path: '/cv',
       name: 'Lebenslauf',
-      component: CV
+      component: work
     },
     {
       path: '/',
       name: 'Home',
-      component: TimeLine
+      component: work
     },
     {
       path: '/skills',

@@ -456,6 +456,22 @@
  h2 {
    text-align: left;
    letter-spacing: 10px;
+   display: flex;
+   align-items: center;
+
+ }
+ h2::before,
+ h2::after {
+   content: "";
+   background: black;
+   height: .1em;
+   margin: 0 1em;
+ }
+ h2::before {
+   flex: .1;
+ }
+ h2::after {
+   flex: .9;
  }
  ul {
    margin: 0;
