@@ -1,19 +1,19 @@
 <template>
-  <div class="skill" v-on:click="viewProject">
+  <div class="skill" >
     <div class="flipper">
       <div class="front">
         <svg class="stat-circle" viewBox="1.6 1.6 16.8 16.8">
           <circle class="bg" cx="10" cy="10" r="8"></circle>
-          <circle class="progress" cx="10" cy="10" r="8" v-bind:data-percentage="percentage">
+          <circle v-bind:style="{ strokeDashoffset: (-51 -((51 / 100) * this.percentage))}" class="progress" cx="10" cy="10" r="8" v-bind:data-percentage="percentage">
 
             <animate  attributeType="css" attributeName="stroke-dashoffset"
-                      from="358" v-bind:to='getAnimTo()'  dur=".5s" repeatCount="1"       calcMode="spline"       fill="freeze" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
+                      from="358" v-bind:to='getAnimTo()'  dur="0.5s" repeatCount="1"       calcMode="spline"       fill="freeze" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
           </circle>
           <text x="62%" y="70%">{{ percentage }}%</text>
         </svg>
         <span class="blurr"><slot ></slot></span>
       </div>
-      <div  class="back" v-bind:style="{ backgroundImage: 'url(' + imgType + ')' }">
+      <div v-on:click="viewProject"  class="back" v-bind:style="{ backgroundImage: 'url(' + imgType + ')' }">
         <span ><span v-if="link !== 'none'" class="boxli">view Projects</span></span>
       </div>
     </div>
@@ -26,7 +26,7 @@
     export default {
         name: "CircleProgressBar",
         props: {
-          percentage: String,
+          percentage: Number,
           type: Object, // filter arten TODO nacharbeiten!
           imgType: {
             default: require('../assets/logo.png'),
@@ -49,7 +49,14 @@
 
             //this.$router.push({ name: 'user', params: { userId }})
           }
-        }
+        },
+      watcher: function () {
+        var off = -51 -((51 / 100) * this.percentage);
+        document.getElementsByClassName('progress')[0].style.strokeDashoffset = off;
+
+        //$statCircle[i].style.strokeDashoffset = off;
+      }
+
     }
 </script>
 
@@ -122,7 +129,7 @@
     display: table;
     height: $card-height;
     background: center center no-repeat;
-    background-size: 90%;
+    background-size: 80%;
   }
   .back span {
     display: table-cell;
@@ -131,7 +138,7 @@
 
   }
   .back span .boxli {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
   }
 
 </style>

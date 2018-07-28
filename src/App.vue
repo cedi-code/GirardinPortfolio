@@ -86,6 +86,7 @@ html, body {
     <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
   </svg>');
   background-size: 50px 50px;
+  overflow-x: hidden;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

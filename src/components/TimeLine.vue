@@ -244,7 +244,7 @@
                 projektArt: 'idpa',
                 datum: 'aktiv',
                 content: {
-                  title: '"Coffeefy"',
+                  title: '"studex"',
                   icon: require('../assets/icons/flutter_laravel.png'),
                   description: '<p>Ist eine Native-App die ermöglichen soll, Schultermine der BWD einzutragen und zu Teilen,<br/> diese werden dann auf der App benachrichtigt.</p>\n' +
                     '<p>Für die App, arbeiten wir mit Flutter, für den Webteil, benutzen wir das MVC Laravel</p>' +
@@ -437,10 +437,10 @@
 
 <style scoped>
 html, body {
-  overflow: hidden;
   transition: width  .5s , height .1s, border-radius .5s, transform .3s  ;
 }
 .content {
+
   width: 100%;
   display: inline-grid;
   grid-template-columns: 5% 5% [spliter] repeat(3,  30%);
