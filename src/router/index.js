@@ -18,7 +18,7 @@ export default new Router({
     {
       path: '/cv',
       name: 'Lebenslauf',
-      component: work
+      component: CV
     },
     {
       path: '/',

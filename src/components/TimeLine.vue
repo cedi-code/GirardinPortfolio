@@ -244,7 +244,7 @@
                 projektArt: 'idpa',
                 datum: 'aktiv',
                 content: {
-                  title: '"studex"',
+                  title: '"learnable"',
                   icon: require('../assets/icons/flutter_laravel.png'),
                   description: '<p>Ist eine Native-App die ermöglichen soll, Schultermine der BWD einzutragen und zu Teilen,<br/> diese werden dann auf der App benachrichtigt.</p>\n' +
                     '<p>Für die App, arbeiten wir mit Flutter, für den Webteil, benutzen wir das MVC Laravel</p>' +
@@ -443,7 +443,7 @@ html, body {
 
   width: 100%;
   display: inline-grid;
-  grid-template-columns: 5% 5% [spliter] repeat(3,  30%);
+  grid-template-columns: 5% 5%  repeat(3,  minmax(300px,30%));
 
 }
 .date {
@@ -460,7 +460,7 @@ html, body {
 }
 @media screen and (max-width: 900px) {
   .content {
-    grid-template-columns: 1% 4% [spliter] repeat(3,  31.5%);
+    grid-template-columns: 1% 4%  repeat(3,  31.5%);
     background-size: 100px 100px;
   }
 

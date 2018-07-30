@@ -95,6 +95,7 @@
     font-size: 140%;
     background-color: #3a3a3a;
     perspective: 400px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: transform .25s ease;
   }
   .skill:hover {
@@ -107,7 +108,6 @@
   .flipper {
     transition: 0.35s ease;
     transform-style: preserve-3d;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     position: relative;
   }
   .front, .back {

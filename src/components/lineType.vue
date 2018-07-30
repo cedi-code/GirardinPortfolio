@@ -49,15 +49,20 @@
           strokeSpacing: {
             default: this.strokeDash / 4,
             type: Number
-          }
+          },
         },
       computed: {
         style() {
-          return 'stroke:rgb(0,0,0); stroke-width:' + this.thicc + 'px; stroke-dasharray: ' + this.strokeDash + 'px, ' + this.strokeDash  + 'px; animation: marching-ants 1s infinite'
+          if(this.color) {
+            return 'stroke:white; stroke-width:' + this.thicc + 'px; stroke-dasharray: ' + this.strokeDash + 'px, ' + this.strokeDash  + 'px; animation: marching-ants 1s infinite'
+          }else {
+            return 'stroke:rgb(0,0,0); stroke-width:' + this.thicc + 'px; stroke-dasharray: ' + this.strokeDash + 'px, ' + this.strokeDash  + 'px; animation: marching-ants 1s infinite'
+          }
+
         }
       },
 
-      props: ['rotaion',  'thicc', 'animate', 'strokeDash', 'lineType']
+      props: ['rotaion',  'thicc', 'animate', 'strokeDash', 'lineType', 'color']
     }
 </script>
 

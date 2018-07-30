@@ -220,7 +220,7 @@
                   },
                   vue: {
                     id: 5,
-                    percent: 70,
+                    percent: 65,
                     title: 'Vue.js',
                     link: 'none',
                     type: 'Front-End',

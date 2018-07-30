@@ -65,6 +65,10 @@ export default {
     addChecks: function() {
       window.addEventListener('resize', this.isMobile),
         console.log("added")
+      if(screen.width < 900) {
+        console.log('isMobile')
+        this.mobile = true
+      }
     }
   },
   created() {
@@ -86,7 +90,7 @@ html, body {
     <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
   </svg>');
   background-size: 50px 50px;
-  overflow-x: hidden;
+
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -130,8 +134,7 @@ html, body {
   height: 10vh;
   transition: height 1s ease;
 }
-.nav:hover {
-}
+
 .downArrow {
   border: solid white;
   border-width: 0 5px 5px 0;
@@ -194,7 +197,26 @@ html, body {
 @media screen and (max-width: 1100px) {
   .ulnav {
     padding: 0;
+
   }
+  .navTitle {
+    letter-spacing: 2px;
+    margin: 0;
+  }
+
+  li {
+    letter-spacing: 0px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .expand {
+    height: 60vh;
+  }
+
+  .shrinkButton {
+    top: 55%;
+  }
+
 }
 
 
