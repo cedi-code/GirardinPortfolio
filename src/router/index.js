@@ -5,6 +5,7 @@ import TimeLine from '@/components/TimeLine'
 import CV from '@/components/cvComponent'
 import Skills from '@/components/skillsComponent'
 import work from '@/components/workInProgress'
+import intro from '@/components/Intro'
 
 Vue.use(Router)
 
@@ -22,8 +23,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Home',
-      component: work
+      name: 'Portfolio',
+      component: intro
     },
     {
       path: '/skills',
