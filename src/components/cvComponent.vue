@@ -1,32 +1,28 @@
 <template>
   <div class="cvGrid">
-    <div class="boxli" id="personalien" v-on:click="cv.personalien.active = !cv.personalien.active" v-bind:class="{nonExpand:!cv.personalien.active,expandBoxli:cv.personalien.active   }">
+    <div class="boxli" id="personalien">
       <h2>Personalien</h2>
-      <transition name="fade" mode="out-in" >
-      <ul v-if="cv.personalien.active">
-
-        <li v-for="txt in cv.personalien.inhalt">{{txt}}</li>
+      <ul>
+        <li v-for="txt in cv.personalien">{{txt}}</li>
       </ul>
-      </transition>
+
     </div>
-    <div class="boxli" id="sprachen" v-bind:class="{nonExpand:!cv.sprachen.active,expandBoxli:cv.sprachen.active   }">
+    <div class="boxli" id="sprachen">
       <h2>Sprachen</h2>
-      <transition name="fade" mode="out-in" >
-      <ul v-if="cv.sprachen.active">
-        <li v-for="sprachen in cv.sprachen.inhalt">{{sprachen}}</li>
+      <ul>
+        <li v-for="sprachen in cv.sprachen">{{sprachen}}</li>
         <li><router-link to="/skills" ><h3>Programmiersprachen</h3></router-link></li>
       </ul>
-      </transition>
     </div>
     <div class="boxli" id="hobbys">
       <h2>Hobbys</h2>
-      <ul v-if="cv.hobbys.active">
+      <ul >
         <li v-for="hobby in cv.hobbys">{{ hobby }}</li>
       </ul>
     </div>
     <div class="boxli" id="schulen">
       <h2>Bildung</h2>
-      <ul v-if="cv.schulen.active" v-for="schulen in cv.schulen">
+      <ul v-for="schulen in cv.schulen">
         <line-comp thicc="2" color="true"></line-comp>
         <li>{{schulen.jahr}}</li>
         <li>{{schulen.name}}</li>
@@ -76,49 +72,39 @@
         return {
           cv: {
             personalien: {
-              active: true,
-              title: 'Personalien',
-              inhalt: {
-                titleName: 'Name:',
-                name: 'Girardin',
-                titleVorname: 'Vorname:',
-                vorname: 'Cédric Henri Rudi',
-                titleGeburt: 'Geburt:',
-                geburt: '16.02.2000',
-                titleStrasse: 'Strasse:',
-                strasse: 'Oberdorf 28',
-                titleOrt: 'Ort:',
-                ort: '3257 Ammerzwil',
-                titleHeimat: 'Heimasort:',
-                heimat: 'Le Bémont JU',
-                titleNation: 'Nationalität:',
-                nation: 'Schweiz / Belgien',
-                titleEltern: 'Eltern:',
-                eltern: 'Jean Girardin, Els Vanlangenaeker',
-                titleGeschwister: 'Geschwister:',
-                geschwister: 'Philippe , Laura , Victor '
-              }
-
+              titleName: 'Name:',
+              name: 'Girardin',
+              titleVorname: 'Vorname:',
+              vorname: 'Cédric Henri Rudi',
+              titleGeburt: 'Geburt:',
+              geburt: '16.02.2000',
+              titleStrasse: 'Strasse:',
+              strasse: 'Oberdorf 28',
+              titleOrt: 'Ort:',
+              ort: '3257 Ammerzwil',
+              titleHeimat: 'Heimasort:',
+              heimat: 'Le Bémont JU',
+              titleNation: 'Nationalität:',
+              nation: 'Schweiz / Belgien',
+              titleEltern: 'Eltern:',
+              eltern: 'Jean Girardin, Els Vanlangenaeker',
+              titleGeschwister: 'Geschwister:',
+              geschwister: 'Philippe , Laura , Victor '
 
             },
             sprachen: {
-              active: false,
-              inhalt: {
-                titleMutter: 'Muttersprachen:',
+              titleMutter: 'Muttersprachen:',
                 deutsch: 'Deutsch',
-                title1: ' ',
+              title1: ' ',
                 franz: 'Französisch',
-                title2: ' ',
+              title2: ' ',
                 niederländisch: 'Niederländisch',
-                title3: ' ',
+              title3: ' ',
                 titleLeer: ' ',
-                titleSchule: 'Schulkenntnisse:',
+              titleSchule: 'Schulkenntnisse:',
                 englisch: 'Englisch'
-              }
-
             },
             schulen: {
-              active: false,
               ims: {
                 jahr: '2016-2020',
                 name: 'IMS, bwd Bern'
@@ -141,17 +127,12 @@
               }
 
             },
-
             hobbys: {
-              active: false,
-              inhalt: {
-                smash: 'Smash?',
-                reisen: 'Reisen',
-                programmieren: 'Programmieren',
-                serien: 'Serien..schauen ka',
-                ka: 'Ha schüsch kenni hobbys me..'
-              }
-
+              smash: 'Smash?',
+              reisen: 'Reisen',
+              programmieren: 'Programmieren',
+              serien: 'Serien..schauen ka',
+              ka: 'Ha schüsch kenni hobbys me..'
             }
 
           }
@@ -161,42 +142,19 @@
         'line-comp' : Line,
         'arc-comp' : Arc,
       },
-      methods: {
-        handleScroll () {
-          if ((window.innerHeight + window.scrollY  ) >= document.body.offsetHeight) {
-            this.cv.personalien.active = false;
-            this.cv.sprachen.active = true;
-          }
-          else if(window.scrollY <= 10) {
-            this.cv.personalien.active = true;
-            this.cv.sprachen.active = false;
-          }
-
-        }
-      },
-      created () {
-        window.addEventListener('scroll', this.handleScroll);
-      },
-      destroyed () {
-        window.removeEventListener('scroll', this.handleScroll);
-      }
     }
 </script>
 
 <style scoped>
-  .fade-enter-active, .fade-leave-active {
-    transition: transform 0.5s ease;
-  }
-  .fade-enter, .fade-leave-to
-    /* .component-fade-leave-active below version 2.1.8 */ {
-    transform: scale(0);
-  }
   ul {
     list-style: none;
     text-align: left;
     color: white;
   }
-
+  li{
+    padding: 5px;
+    font-size: 120%;
+  }
   a {
     color: white;
     font-style:italic;
@@ -215,31 +173,23 @@
     background-color: #14171a;
   }
   .cvGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
 
-    margin: 5% 15%;
+    margin: 5%;
   }
   .boxli {
+    margin: 10px;
     padding: 20px;
-    padding-bottom: 50px;
+    transition: background 0.7s ease, color 1s ease, transform .5s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 20px;
-    height: auto;
-    transition:max-height 0.5s ease;
-    overflow:hidden;
-  }
-  .nonExpand {
-    max-height: 0;
 
-  }
-  .expandBoxli {
-    max-height: 40vh;
   }
   .boxli h2 {
     display: flex;
     color: white;
     align-items: center;
     margin: 0;
-
   }
   .boxli h2::before,
   .boxli h2::after {
@@ -250,9 +200,21 @@
     flex: 1;
 
   }
+  .boxli:hover {
+    transform: scale(0.95);
 
+  }
+  .boxli:hover ul {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+  }
 
   #personalien {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
 
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
@@ -262,9 +224,19 @@
     background-color: #8bd081;
 
   }
+  #personalien:hover {
+    background: url("../assets/asshole1.png") center center no-repeat;
+  }
+  #personalien ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   #sprachen {
-
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <path opacity="0.2" stroke-width="3" stroke-linecap="round" stroke="white" d="M 10,10 L 30,30 M 30,10 L 10,30" /> \
@@ -272,9 +244,20 @@
     background-size: 50px 50px;
     background-color: #77d0a7;
   }
+#sprachen:hover {
+  background: url("../assets/language.jpg") center center no-repeat;
+}
+
+  #sprachen ul {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+  }
 
   #schulen {
-
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
 
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
@@ -283,10 +266,20 @@
     background-size: 50px 50px;
     background-color: #75b76c;
   }
-
+  #schulen:hover {
+    background: url("../assets/learn-new-language.jpg") center center no-repeat;
+  }
+  #schulen ul {
+    margin: 0;
+    display: grid;
+    grid-template-columns:1% 29% 80% ;
+  }
 
   #hobbys {
-
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <path d="M5,50 L35,5 L67,50 z" fill="none" stroke="white" stroke-width="2" opacity="0.2" stroke-linejoin="round" /> \
@@ -294,9 +287,14 @@
     background-size: 50px 50px;
     background-color: #42b883;
   }
-
+  #hobbys:hover {
+    background: url("../assets/darkStreet.jpg") center center no-repeat;
+  }
   #referenzen{
-
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <circle cx="50" cy="50" r="19" fill="#fff" opacity="0.2" />\
@@ -306,7 +304,10 @@
     background-color: #47cf95;
   }
   #nebenjobs{
-
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <rect x="10" transform="rotate(45deg)" y="10" width="15" height="15"  opacity="0.5" fill="white" /> \
