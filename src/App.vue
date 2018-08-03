@@ -18,7 +18,7 @@
 
     </div>
 
-    <div v-on:mouseover="expand(false)"  >
+    <div v-on:mouseover="expand(false)" >
       <transition name="router-anim" mode="out-in" >
         <router-view/>
       </transition>
@@ -85,19 +85,23 @@ export default {
 html, body {
   margin: 0;
   padding: 0;
-  background: url('data:image/svg+xml,\
+  /*background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
-  </svg>');
-  background-size: 50px 50px;
+  </svg>'); */
+
+
 
 }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+
 }
 .expandButton {
   float: left;

@@ -1,9 +1,14 @@
 <template>
   <div class="cvGrid" >
-    <div class="boxli" id="personalien">
-      <div class="overlay">
+    <div class="boxli" id="personalien"  v-on:mouseover="someHover(0)" >
+      <transition>
+
+
+        <div class="overlay" v-bind:class="{Off:  oO.oPers}">
+
         <span v-if="mobile">click Me!</span>
       </div>
+      </transition>
       <h2>Personalien</h2>
       <ul>
         <li v-for="txt in cv.personalien">{{txt}}</li>
@@ -11,36 +16,38 @@
 
 
     </div>
-    <div class="boxli" id="sprachen" v-on:mouseover="spracheHover()"  @mouseleave="reset">
+    <div class="boxli" id="sprachen" v-on:mouseover="someHover(1)"  @mouseleave="reset">
       <h2>Sprachen</h2>
       <ul>
         <li v-for="sprachen in cv.sprachen">{{sprachen}}</li>
         <li><router-link to="/skills" ><h3>Programmiersprachen</h3></router-link></li>
       </ul>
-      <div class="overlay oLeft">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oLeft" v-bind:class="{Off:  oO.oSpra}">        <span v-if="mobile">click Me!</span></div>
     </div>
-    <div class="boxli" id="hobbys" v-on:mouseover="someHover(0)" @mouseleave="reset">
+    <div class="boxli" id="hobbys" v-on:mouseover="someHover(2)" @mouseleave="reset">
       <h2>Hobbys</h2>
       <ul >
         <li v-for="hobby in cv.hobbys">{{ hobby }}</li>
       </ul>
-      <div class="overlay oUp">        <span v-if="mobile">click Me!</span></div>
+      <transition>
+        <div class="overlay oUp" v-bind:class="{Off:  oO.oHobb}">        <span v-if="mobile">click Me!</span></div>
+      </transition>
     </div>
-    <div class="boxli" id="schulen" v-on:mouseover="schuleHover()" @mouseleave="reset">
+    <div class="boxli" id="schulen" v-on:mouseover="someHover(3)"  @mouseleave="reset">
       <h2>Bildung</h2>
       <ul v-for="schulen in cv.schulen">
         <line-comp thicc="2" color="true"></line-comp>
         <li>{{schulen.jahr}}</li>
         <li>{{schulen.name}}</li>
       </ul>
-      <div class="overlay oRight">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oRight" v-bind:class="{Off:  oO.oSchu}">        <span v-if="mobile">click Me!</span></div>
     </div>
-    <div class="boxli" id="referenzen" v-on:mouseover="someHover(2)" @mouseleave="reset">
+    <div class="boxli" id="referenzen" v-on:mouseover="someHover(4)" @mouseleave="reset">
       <h2>Referenzen</h2>
-      <div class="overlay oDown">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oDown" v-bind:class="{Off:  oO.oRefe}">        <span v-if="mobile">click Me!</span></div>
 
     </div>
-    <div class="boxli" id="nebenjobs" v-on:mouseover="someHover(1)" @mouseleave="reset">
+    <div class="boxli" id="nebenjobs" v-on:mouseover="someHover(5)" @mouseleave="reset">
       <h2>Nebenjobs</h2>
       <ul>
         <li v-for="job in cv.nebenjobs">
@@ -54,7 +61,7 @@
 
         </li>
       </ul>
-      <div class="overlay oLeft">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oLeft" v-bind:class="{Off:  oO.oNebe}">        <span v-if="mobile">click Me!</span></div>
     </div>
     <div id="bottomButton" @click="showModal = true">view pdf</div>
     <modal v-if="showModal" @close="showModal = false">
@@ -72,46 +79,51 @@
         name: "cvComponent",
       methods: {
         spracheHover: function (id) {
-          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
-          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
+
+            this.oO.oPers = true
         },
         schuleHover: function () {
-          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
-          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '0%');
-          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '0%');
-          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
-          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '0%');
+
 
         },
         someHover:function(id) {
-          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
-          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '0%');
-          document.getElementById('schulen').getElementsByClassName('overlay')[0].style.setProperty('--schuleO', '0%');
-          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
-          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '0%');
-          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '0%');
+          this.oO.oPers = true,
+            this.oO.oHobb = true,
+            this.oO.oSpra = true,
+            this.oO.oSchu = true,
+            this.oO.oRefe = true,
+            this.oO.oNebe = true;
+            switch(id) {
+              case 0:
+                this.oO.oPers = false;
+                break;
+              case 1:
+                this.oO.oSpra = false;
+                break;
+              case 2:
+                this.oO.oHobb = false;
+                break;
+              case 3:
+                this.oO.oSchu = false;
+                break;
+              case 4:
+                this.oO.oRefe = false;
+                break;
+              case 5:
+                this.oO.oNebe = false;
+                break;
+            }
 
-          switch (id) {
-            case 0:
-              document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '-100%');
-              break;
-            case 1:
-              document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '100%');
-              break;
-            case 2:
-              document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '100%');
-              break;
-          }
         },
 
         reset: function () {
-          console.log('reset?');
-          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '100%');
-          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '-100%');
-          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '-100%');
-          document.getElementById('schulen').getElementsByClassName('overlay')[0].style.setProperty('--schuleO', '100%');
-          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '100%');
-          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '100%');
+          this.oO.oPers = false,
+            this.oO.oHobb = false,
+            this.oO.oSpra = false,
+            this.oO.oSchu = false,
+            this.oO.oRefe = false,
+            this.oO.oNebe = false
+
         },
         addChecks: function() {
           window.addEventListener('resize', this.isMobile),
@@ -129,6 +141,14 @@
         return {
           mobile: false,
           showModal: false,
+          oO: {
+            oPers: false,
+            oHobb: false,
+            oSpra: false,
+            oSchu: false,
+            oRefe: false,
+            oNebe: false,
+          },
 
           cv: {
             personalien: {
@@ -221,25 +241,10 @@
     }
 </script>
 
-<style lang="scss">
-  :root {
-    --persO: 100%;
-    --persB: url("../assets/cv/personalien/cediUberfordert.jpg");
+<style scoped>
 
-    --sprachO: -100%;
-    --sprachB: url("../assets/cv/sprachen/code1.jpg");
-
-    --hobbyO: -100%;
-    --hobbyB: url("../assets/cv/travel.jpg");
-
-    --schuleO: 100%;
-    --schuleB: url("../assets/cv/schulen/Gebäude_Linde.jpg");
-
-    --referO: 100%;
-    --referB: url("../assets/cv/personalien/leBemont.jpg");
-
-    --nebenO: 100%;
-    --nebenB: url("../assets/cv/neben.jpg")
+  .Off {
+    transform: translateX(0%) !important;
   }
 
   ul {
@@ -335,6 +340,7 @@
     height: 100%;
     width: 100%;
     background-size: cover !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     /* ändern */
 
 
@@ -384,33 +390,12 @@
 
   }
   #personalien .overlay {
-    transform: translateX(var(--persO));
-    background: var(--persB) center center no-repeat;
+    transform: translateX(100%);
+    background: url('../assets/cv/personalien/cediUberfordert.jpg') center center no-repeat;
     transition: transform .5s ease;
 
   }
 
-  #personalien:hover ~ #sprachen .overlay {
-    transform: translate(0%);
-    background: url("../assets/cv/sprachen/code1.jpg") center center no-repeat;
-
-  }
-  #personalien:hover ~ #hobbys .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/travel.jpg") center center no-repeat ;
-  }
-  #personalien:hover ~ #schulen .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/schulen/Gebäude_Linde.jpg") center center no-repeat ;
-  }
-  #personalien:hover ~ #referenzen .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/personalien/leBemont.jpg") center center no-repeat ;
-  }
-  #personalien:hover ~ #nebenjobs .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/neben.jpg") center center no-repeat ;
-  }
 
 
   #personalien ul {
@@ -433,26 +418,12 @@
   }
 
   #sprachen .overlay {
-    transform: translateX(var(--sprachO));
-    background: var(--sprachB) center center no-repeat;
+    transform: translateX(-100%);
+    background: url('../assets/cv/sprachen/code1.jpg') center center no-repeat;
     transition: transform .5s ease;
   }
 
 
-  #sprachen:hover ~ #hobbys .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/travel.jpg") center center no-repeat ;
-
-  }
-  #sprachen:hover ~ #schulen .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/schulen/Gebäude_Linde.jpg") center center no-repeat ;
-  }
-
-  #sprachen:hover ~ #nebenjobs .overlay{
-    transform: translate(0%);
-    background: url("../assets/cv/neben.jpg") center center no-repeat ;
-  }
 
   #sprachen ul {
     display: grid;
@@ -474,8 +445,8 @@
   }
 
   #schulen .overlay {
-    transform: translateX(var(--schuleO));
-    background: var(--schuleB) center center no-repeat;
+    transform: translateX(100%);
+    background: url('../assets/cv/schulen/Gebäude_Linde.jpg') center center no-repeat;
     transition: transform 1s ease;
   }
 
@@ -499,8 +470,8 @@
     background-color: #42b883;
   }
   #hobbys .overlay {
-    transform: translateX(var(--hobbyO));
-    background: var(--hobbyB) center center no-repeat;
+    transform: translateX(-100%);
+    background: url("../assets/cv/travel.jpg") center center no-repeat;
     transition: transform .8s ease;
   }
   #hobbys:hover {
@@ -520,10 +491,12 @@
     background-color: #47cf95;
   }
   #referenzen .overlay {
-    transform: translateX(var(--referO));
-    background: var(--referB) center center no-repeat;
+    transform: translateX(100%);
+    background: url('../assets/cv/personalien/leBemont.jpg') center center no-repeat;
     transition: transform 1s ease;
   }
+
+
   #nebenjobs{
     grid-column-start: 2;
     grid-column-end: 4;
@@ -537,10 +510,12 @@
     background-color: #afd04f;
   }
   #nebenjobs .overlay {
-    transform: translateX(var(--nebenO));
-    background: var(--nebenB) center center no-repeat;
+    transform: translateX(100%);
+    background: url('../assets/cv/neben.jpg') center center no-repeat;
     transition: transform .5s ease;
   }
+
+
    #nebenjobs ul li {
      float: left;
    }
