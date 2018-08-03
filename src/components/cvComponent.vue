@@ -1,75 +1,135 @@
 <template>
-  <div class="cvGrid">
+  <div class="cvGrid" >
     <div class="boxli" id="personalien">
+      <div class="overlay">
+        <span v-if="mobile">click Me!</span>
+      </div>
       <h2>Personalien</h2>
       <ul>
         <li v-for="txt in cv.personalien">{{txt}}</li>
       </ul>
 
+
     </div>
-    <div class="boxli" id="sprachen">
+    <div class="boxli" id="sprachen" v-on:mouseover="spracheHover()"  @mouseleave="reset">
       <h2>Sprachen</h2>
       <ul>
         <li v-for="sprachen in cv.sprachen">{{sprachen}}</li>
         <li><router-link to="/skills" ><h3>Programmiersprachen</h3></router-link></li>
       </ul>
+      <div class="overlay oLeft">        <span v-if="mobile">click Me!</span></div>
     </div>
-    <div class="boxli" id="hobbys">
+    <div class="boxli" id="hobbys" v-on:mouseover="someHover(0)" @mouseleave="reset">
       <h2>Hobbys</h2>
       <ul >
         <li v-for="hobby in cv.hobbys">{{ hobby }}</li>
       </ul>
+      <div class="overlay oUp">        <span v-if="mobile">click Me!</span></div>
     </div>
-    <div class="boxli" id="schulen">
+    <div class="boxli" id="schulen" v-on:mouseover="schuleHover()" @mouseleave="reset">
       <h2>Bildung</h2>
       <ul v-for="schulen in cv.schulen">
         <line-comp thicc="2" color="true"></line-comp>
         <li>{{schulen.jahr}}</li>
         <li>{{schulen.name}}</li>
       </ul>
-      <ul>
-
-      </ul>
+      <div class="overlay oRight">        <span v-if="mobile">click Me!</span></div>
     </div>
-    <div class="boxli" id="referenzen">
+    <div class="boxli" id="referenzen" v-on:mouseover="someHover(2)" @mouseleave="reset">
       <h2>Referenzen</h2>
-    </div>
-    <div class="boxli" id="nebenjobs">
-      <h2>Nebenjobs</h2>
-    </div>
-    <div id="bottomButton">view pdf</div>
-  <!--<ul>
+      <div class="overlay oDown">        <span v-if="mobile">click Me!</span></div>
 
-    <li><h2>Sprachen</h2></li>
-    <li><h4>Muttersprache</h4></li>
-    <li>Deutsch</li>
-    <li>Französisch</li>
-    <li>Niederländisch</li>
-    <li>C#</li>
-    <li><h4>Schulkenntnisse</h4>
-    <li> Englisch
-    <li>Java</li>
-    <li>PHP</li>
-    <li>Javascript</li>
-    <li>Python</li>
-    <li><h4>Privatkenntnisse</h4></li>
-    <li>Vue.js</li>
-    <li>"XML"</li>
-    <br/>
-    <li><h2>Schulbildung</h2></li>
-    <li>2016-2020: bwd Bern / gibb </li>
-    <li>2015-2016: 10.Schuljahr, BVS Biel</li>
-  </ul> -->
+    </div>
+    <div class="boxli" id="nebenjobs" v-on:mouseover="someHover(1)" @mouseleave="reset">
+      <h2>Nebenjobs</h2>
+      <ul>
+        <li v-for="job in cv.nebenjobs">
+          <div class="nebenjobBox">
+            <img v-bind:src="job.img" v-bind:alt="job.title">
+            <p>Tätigkeit: <span>{{job.tätigkeit}}</span>
+            <br> <a v-bind:href="job.link" target="_blank">mehr infos</a>
+            </p>
+
+          </div>
+
+        </li>
+      </ul>
+      <div class="overlay oLeft">        <span v-if="mobile">click Me!</span></div>
+    </div>
+    <div id="bottomButton" @click="showModal = true">view pdf</div>
+    <modal v-if="showModal" @close="showModal = false">
+      <template slot="request">lebenslauf</template>
+    </modal>
+
   </div>
 </template>
 
 <script>
   import Line from './lineType'
   import Arc from './arcType'
+  import daten from './popup'
     export default {
         name: "cvComponent",
+      methods: {
+        spracheHover: function (id) {
+          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
+          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
+        },
+        schuleHover: function () {
+          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
+          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '0%');
+          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '0%');
+          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
+          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '0%');
+
+        },
+        someHover:function(id) {
+          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '0%');
+          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '0%');
+          document.getElementById('schulen').getElementsByClassName('overlay')[0].style.setProperty('--schuleO', '0%');
+          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '0%');
+          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '0%');
+          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '0%');
+
+          switch (id) {
+            case 0:
+              document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '-100%');
+              break;
+            case 1:
+              document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '100%');
+              break;
+            case 2:
+              document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '100%');
+              break;
+          }
+        },
+
+        reset: function () {
+          console.log('reset?');
+          document.getElementById('personalien').getElementsByClassName('overlay')[0].style.setProperty('--persO', '100%');
+          document.getElementById('sprachen').getElementsByClassName('overlay')[0].style.setProperty('--sprachO', '-100%');
+          document.getElementById('hobbys').getElementsByClassName('overlay')[0].style.setProperty('--hobbyO', '-100%');
+          document.getElementById('schulen').getElementsByClassName('overlay')[0].style.setProperty('--schuleO', '100%');
+          document.getElementById('referenzen').getElementsByClassName('overlay')[0].style.setProperty('--referO', '100%');
+          document.getElementById('nebenjobs').getElementsByClassName('overlay')[0].style.setProperty('--nebenO', '100%');
+        },
+        addChecks: function() {
+          window.addEventListener('resize', this.isMobile),
+            console.log("added")
+          if(screen.width < 900) {
+            console.log('isMobile')
+            this.mobile = true
+          }
+        }
+      },
+      created() {
+        this.addChecks()
+      },
       data () {
         return {
+          mobile: false,
+          showModal: false,
+
           cv: {
             personalien: {
               titleName: 'Name:',
@@ -133,6 +193,21 @@
               programmieren: 'Programmieren',
               serien: 'Serien..schauen ka',
               ka: 'Ha schüsch kenni hobbys me..'
+            },
+            nebenjobs: {
+              südkurve: {
+                title: 'Südkurve Lyss',
+                img: require("../assets/cv/sudkurve.jpg"),
+                tätigkeit: 'Umgebungsarbeiten',
+                link: 'https://suedkurve-lyss.ch/angebote/suedkurve-job-gmbh/'
+
+              },
+              brunnerEichhof: {
+                title: 'Brunner Eichhof',
+                img: require("../assets/cv/brunner.jpeg"),
+                tätigkeit: 'Lohnjäterei',
+                link: 'http://www.lohnjäterei.ch/'
+              }
             }
 
           }
@@ -141,11 +216,32 @@
       components: {
         'line-comp' : Line,
         'arc-comp' : Arc,
-      },
+        'modal' : daten
+      }
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+  :root {
+    --persO: 100%;
+    --persB: url("../assets/cv/personalien/cediUberfordert.jpg");
+
+    --sprachO: -100%;
+    --sprachB: url("../assets/cv/sprachen/code1.jpg");
+
+    --hobbyO: -100%;
+    --hobbyB: url("../assets/cv/travel.jpg");
+
+    --schuleO: 100%;
+    --schuleB: url("../assets/cv/schulen/Gebäude_Linde.jpg");
+
+    --referO: 100%;
+    --referB: url("../assets/cv/personalien/leBemont.jpg");
+
+    --nebenO: 100%;
+    --nebenB: url("../assets/cv/neben.jpg")
+  }
+
   ul {
     list-style: none;
     text-align: left;
@@ -175,13 +271,16 @@
   .cvGrid {
     display: grid;
     grid-template-columns: repeat(3, 33%);
+    font-family: 'Renner*';
 
-    margin: 5%;
+    margin: 7%;
   }
   .boxli {
     margin: 10px;
     padding: 20px;
-    transition: background 0.7s ease, color 1s ease, transform .5s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform .5s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
   }
@@ -190,6 +289,8 @@
     color: white;
     align-items: center;
     margin: 0;
+    font-weight: 400;
+    font-style: italic;
   }
   .boxli h2::before,
   .boxli h2::after {
@@ -200,15 +301,73 @@
     flex: 1;
 
   }
+
   .boxli:hover {
     transform: scale(0.95);
 
   }
-  .boxli:hover ul {
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 10px;
+  .nebenjobBox img {
+    max-width: 250px;
+    max-height: 250px;
+    padding: 10px;
+    display: table-cell;
+  }
+  .nebenjobBox {
+    display: table;
+
+  }
+  .nebenjobBox p {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+  }
+  .nebenjobBox span {
+    font-size: 120%;
+    font-weight: 300;
   }
 
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover !important;
+    /* ändern */
+
+
+  }
+  .overlay span {
+    position: absolute;
+    top: 0;
+    font-weight: 300;
+    font-style: italic;
+    left: 10%;
+    right: 10%;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+  }
+  .oLeft {
+    transform: translateX(-100%);
+    transition: transform .5s ease;
+  }
+  .oUp {
+    transform: translateY(-100%);
+    transition: transform .8s ease;
+  }
+  .oRight {
+    transform: translateX(100%);
+    transition: transform 1s ease;
+  }
+  .oDown {
+    transform: translateY(100%);
+    transition: transform 1.2s ease;
+  }
   #personalien {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -224,13 +383,41 @@
     background-color: #8bd081;
 
   }
-  #personalien:hover {
-    background: url("../assets/asshole1.png") center center no-repeat;
+  #personalien .overlay {
+    transform: translateX(var(--persO));
+    background: var(--persB) center center no-repeat;
+    transition: transform .5s ease;
+
   }
+
+  #personalien:hover ~ #sprachen .overlay {
+    transform: translate(0%);
+    background: url("../assets/cv/sprachen/code1.jpg") center center no-repeat;
+
+  }
+  #personalien:hover ~ #hobbys .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/travel.jpg") center center no-repeat ;
+  }
+  #personalien:hover ~ #schulen .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/schulen/Gebäude_Linde.jpg") center center no-repeat ;
+  }
+  #personalien:hover ~ #referenzen .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/personalien/leBemont.jpg") center center no-repeat ;
+  }
+  #personalien:hover ~ #nebenjobs .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/neben.jpg") center center no-repeat ;
+  }
+
+
   #personalien ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
 
   #sprachen {
     grid-column-start: 2;
@@ -244,9 +431,28 @@
     background-size: 50px 50px;
     background-color: #77d0a7;
   }
-#sprachen:hover {
-  background: url("../assets/language.jpg") center center no-repeat;
-}
+
+  #sprachen .overlay {
+    transform: translateX(var(--sprachO));
+    background: var(--sprachB) center center no-repeat;
+    transition: transform .5s ease;
+  }
+
+
+  #sprachen:hover ~ #hobbys .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/travel.jpg") center center no-repeat ;
+
+  }
+  #sprachen:hover ~ #schulen .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/schulen/Gebäude_Linde.jpg") center center no-repeat ;
+  }
+
+  #sprachen:hover ~ #nebenjobs .overlay{
+    transform: translate(0%);
+    background: url("../assets/cv/neben.jpg") center center no-repeat ;
+  }
 
   #sprachen ul {
     display: grid;
@@ -266,9 +472,14 @@
     background-size: 50px 50px;
     background-color: #75b76c;
   }
-  #schulen:hover {
-    background: url("../assets/learn-new-language.jpg") center center no-repeat;
+
+  #schulen .overlay {
+    transform: translateX(var(--schuleO));
+    background: var(--schuleB) center center no-repeat;
+    transition: transform 1s ease;
   }
+
+
   #schulen ul {
     margin: 0;
     display: grid;
@@ -287,8 +498,13 @@
     background-size: 50px 50px;
     background-color: #42b883;
   }
+  #hobbys .overlay {
+    transform: translateX(var(--hobbyO));
+    background: var(--hobbyB) center center no-repeat;
+    transition: transform .8s ease;
+  }
   #hobbys:hover {
-    background: url("../assets/darkStreet.jpg") center center no-repeat;
+
   }
   #referenzen{
     grid-column-start: 1;
@@ -303,6 +519,11 @@
     background-size: 50px 50px;
     background-color: #47cf95;
   }
+  #referenzen .overlay {
+    transform: translateX(var(--referO));
+    background: var(--referB) center center no-repeat;
+    transition: transform 1s ease;
+  }
   #nebenjobs{
     grid-column-start: 2;
     grid-column-end: 4;
@@ -315,6 +536,14 @@
     background-size: 50px 50px;
     background-color: #afd04f;
   }
+  #nebenjobs .overlay {
+    transform: translateX(var(--nebenO));
+    background: var(--nebenB) center center no-repeat;
+    transition: transform .5s ease;
+  }
+   #nebenjobs ul li {
+     float: left;
+   }
 
   @media screen and (max-width: 900px) {
     .cvGrid {

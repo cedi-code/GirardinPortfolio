@@ -25,7 +25,8 @@
       </template>
       <template slot="buttons">
         <a v-for="button in projects.Coffeefy.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-          <button>{{button.title}}</button>
+          <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+          <button v-else>{{button.title}}</button>
         </a>
       </template>
     </project>
@@ -56,7 +57,8 @@
       </template>
       <template slot="buttons">
         <a v-for="button in projects.BadiApp.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-          <button>{{button.title}}</button>
+          <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+          <button v-else>{{button.title}}</button>
         </a>
       </template>
     </project>
@@ -77,7 +79,8 @@
         </template>
         <template slot="buttons">
           <a v-for="button in projects.FlashCode.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-            <button>{{button.title}}</button>
+            <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+            <button v-else>{{button.title}}</button>
           </a>
         </template>
     </project>
@@ -107,7 +110,8 @@
       </template>
       <template slot="buttons">
         <a v-for="button in projects.ner10.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-          <button>{{button.title}}</button>
+          <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+          <button v-else>{{button.title}}</button>
         </a>
       </template>
     </project>
@@ -154,7 +158,8 @@
       </template>
       <template slot="buttons">
         <a v-for="button in projects.cedilabs.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-          <button>{{button.title}}</button>
+          <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+          <button v-else>{{button.title}}</button>
         </a>
       </template>
     </project>
@@ -183,7 +188,8 @@
       </template>
       <template slot="buttons">
         <a v-for="button in projects.AppQuest.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-          <button>{{button.title}}</button>
+          <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
+          <button v-else>{{button.title}}</button>
         </a>
       </template>
     </project>
@@ -218,14 +224,18 @@
     <div class="component"></div>
 
 
-
+    <modal v-if="showModal" @close="showModal = false">
+      <template slot="request">{{this.requestTitle}}</template>
+    </modal>
   </article>
+
 </template>
 
 <script>
   import Line from './lineType'
   import Arc from './arcType'
   import project from './projectComponent'
+  import daten from './popup'
 
   //
   // TODO Alle Projekte in data haben und dann dort einfügen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -238,6 +248,8 @@
             strokeThicknessTimeLine: 10,
             strokeDashLine: 20,
             strokeThicknessTime: 1,
+            showModal: false,
+            requestTitle: 'data',
             projects: {
               Coffeefy: {
                 type: ['web', 'app'],
@@ -253,12 +265,15 @@
                     website: {
                       title: 'Webseite',
                       link: 'https://coffeefy.ch/',
-                      target: '_blank'
+                      target: '_blank',
+
                     },
                     more: {
                       title: 'Mehr Infos',
-                      link: '',
-                      target: ''
+
+                      target: '',
+                      request: 'learnable Doku',
+                      sensible: true,
                     }
                   }
                 }
@@ -273,8 +288,9 @@
                   buttons: {
                     ük: {
                       title: 'ük',
-                      link: '',
-                      target: ''
+                      target: '',
+                      request: 'üK Noten',
+                      sensible: true,
                     },
                     playstore: {
                       title: 'Play Store',
@@ -297,8 +313,9 @@
                   buttons: {
                     doku: {
                       title: 'dokumentation',
-                      link: '',
-                      target: ''
+                      target: '',
+                      request: 'FlashCode Dokumentation',
+                      sensible: true,
                     },
                     playstroe: {
                       title: 'Play Store',
@@ -320,8 +337,9 @@
                   buttons: {
                     doku: {
                       title: 'dokumentation',
-                      link: '',
-                      target: ''
+
+                      request: '10ner Doku',
+                      sensible: true,
                     },
                     website: {
                       title: 'Webseite',
@@ -362,8 +380,9 @@
                   buttons: {
                     doku: {
                       title: 'dokumentation',
-                      link: '',
-                      target: ''
+
+                      request: 'Cedilabs dokumentation',
+                      sensible: true,
                     },
                     webseite: {
                       title: 'Webseite',
@@ -383,8 +402,8 @@
                   buttons: {
                     doku: {
                       title: 'dokumentation',
-                      link: '',
-                      target: ''
+                      request: 'App Quest dokumentation',
+                      sensible: true,
                     },
                     host: {
                       title: 'Host',
@@ -422,12 +441,18 @@
       components: {
           'line-comp' : Line,
           'arc-comp' : Arc,
-          'project' : project
+          'project' : project,
+          'modal': daten
+
       },
       methods: {
           expandDiv: function () {
             this.expanded = !this.expanded,
             console.log("expanded")
+          },
+          showSensible: function (request) {
+            this.requestTitle = request;
+            this.showModal = true;
           }
       },
 
