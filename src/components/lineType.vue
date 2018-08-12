@@ -2,7 +2,7 @@
   <div class="clear">
 
 
-    <svg  width="100%" height="100%"  xmlns="http://www.w3.org/2000/svg" >
+    <svg  v-if="!isMobile"  width="100%" height="100%"  xmlns="http://www.w3.org/2000/svg" >
 
       <line v-if="lineType === 'time'" x1="90%" y1="100%" x2="90%" y2="0%" stroke-linecap="round"
             :style="style"
@@ -41,6 +41,12 @@
     export default {
         name: "lineType",
         isLine: true,
+      data () {
+        return {
+          isMobile: false
+        }
+      },
+
         probs: {
           strokeDash: {
             default: 20,
@@ -61,6 +67,18 @@
 
         }
       },
+      methods: {
+        addChecks: function() {
+          // window.addEventListener('resize', this.isMobile),
+          if(screen.width < 900) {
+            this.isMobile = true
+          }
+        }
+      },
+      created() {
+        this.addChecks()
+      },
+
 
       props: ['rotaion',  'thicc', 'animate', 'strokeDash', 'lineType', 'color']
     }

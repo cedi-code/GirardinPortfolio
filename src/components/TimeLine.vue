@@ -1,19 +1,17 @@
 <template>
   <article class="content">
 
-    <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
-    <div class="component date">Zukunft</div>
-    <line-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine"  animate="true"  > </line-comp>
-    <div class="component"></div>
-    <div class="component"></div>
+      <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
+      <div class="component date">Zukunft</div>
+      <line-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine"  animate="true"  > </line-comp>
+      <div class="component"></div>
+      <div class="component"></div>
 
-
-    <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
-    <div class="component"></div>
-    <arc-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine" rotaion="0"  animate="true"  > </arc-comp>
-    <arc-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine" rotaion="90"  animate="true"  > </arc-comp>
-    <div class="component"></div>
-
+      <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
+      <div class="component"></div>
+      <arc-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine" rotaion="0"  animate="true"  > </arc-comp>
+      <arc-comp v-bind:thicc="strokeThicknessTimeLine" v-bind:stroke-dash="strokeDashLine" rotaion="90"  animate="true"  > </arc-comp>
+      <div class="component"></div>
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date">{{projects.Coffeefy.datum}}</div>
@@ -49,7 +47,7 @@
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date">07.2018</div>
     <div class="component"></div>
-    <div class="component"></div>
+    <div v-if="!isMobile" class="component"></div>
     <project  expand-direction="expandLeft" v-bind:img-u-r-l="projects.BadiApp.content.icon" >
       <template slot="content">
         <h2>{{projects.BadiApp.content.title}}</h2>
@@ -62,6 +60,7 @@
         </a>
       </template>
     </project>
+    <div v-if="isMobile" class="component"></div>
 
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
@@ -72,6 +71,7 @@
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date">XX.2018</div>
+    <div v-if="isMobile" class="component"></div>
     <project expand-direction="expandRight" v-bind:img-u-r-l="projects.FlashCode.content.icon" v-bind:img-cover="projects.FlashCode.content.cover" >
         <template slot="content">
           <h2>{{projects.FlashCode.content.title}}</h2>
@@ -84,7 +84,7 @@
           </a>
         </template>
     </project>
-    <div class="component"></div>
+    <div v-if="!isMobile" class="component"></div>
     <div class="component"></div>
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
@@ -102,7 +102,7 @@
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date">04.2018</div>
     <div class="component"></div>
-    <div class="component"></div>
+    <div v-if="!isMobile" class="component"></div>
     <project  expand-direction="expandLeft" v-bind:img-u-r-l="projects.ner10.content.icon">
       <template slot="content">
         <h2>{{projects.ner10.content.title}}</h2>
@@ -115,6 +115,7 @@
         </a>
       </template>
     </project>
+    <div v-if="isMobile" class="component"></div>
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date"></div>
@@ -151,6 +152,7 @@
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
     <div class="component date">01.2018</div>
+    <div v-if="isMobile" class="component"></div>
     <project expand-direction="expandRight" v-bind:img-u-r-l="projects.cedilabs.content.icon"  v-bind:img-cover="projects.cedilabs.content.cover">
       <template slot="content">
         <h2>{{projects.cedilabs.content.title}}</h2>
@@ -163,7 +165,7 @@
         </a>
       </template>
     </project>
-    <div class="component"></div>
+    <div v-if="!isMobile" class="component"></div>
     <div class="component"></div>
 
     <line-comp v-bind:thicc="strokeThicknessTime" stroke-dash="0"  line-type="time"></line-comp>
@@ -237,14 +239,12 @@
   import project from './projectComponent'
   import daten from './popup'
 
-  //
-  // TODO Alle Projekte in data haben und dann dort einfügen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //
+
     export default {
         name: "TimeLine",
         data () {
           return {
-            msg: 'Welcome to Your Vue.js App',
+            isMobile: false,
             strokeThicknessTimeLine: 10,
             strokeDashLine: 20,
             strokeThicknessTime: 1,
@@ -446,17 +446,24 @@
 
       },
       methods: {
-          expandDiv: function () {
-            this.expanded = !this.expanded,
+        expandDiv: function () {
+          this.expanded = !this.expanded,
             console.log("expanded")
-          },
-          showSensible: function (request) {
-            this.requestTitle = request;
-            this.showModal = true;
+        },
+        showSensible: function (request) {
+          this.requestTitle = request;
+          this.showModal = true;
+        },
+        addChecks: function() {
+          // window.addEventListener('resize', this.isMobile),
+          if(screen.width < 900) {
+            this.isMobile = true
           }
+        }
       },
-
-
+      created() {
+        this.addChecks()
+      },
     }
 </script>
 
@@ -487,6 +494,7 @@ html, body {
   .content {
     grid-template-columns: 1% 4%  repeat(3,  31.5%);
     background-size: 100px 100px;
+    grid-row-gap: 1ch;
   }
 
 }

@@ -1,10 +1,10 @@
 <template>
   <div id="app" >
-    <div class="nav"  v-on:mouseover="expand(true)" v-bind:class="{expand: navHover,shrink: !navHover }" >
+    <div class="nav"  v-on:mouseover="expandOn(!mobile)" v-bind:class="{expand: navHover,shrink: !navHover }" >
       <icon-comp v-bind:class="{icons: true}"></icon-comp>
       <transition name="nav-fade" mode="out-in" >
       <ul v-if="navHover" class="ulnav">
-        <nav-comp></nav-comp>
+        <nav-comp v-on:close="navHover = !mobile"></nav-comp>
 
       </ul>
       <ul v-else key="active" class="ulnav">
@@ -12,13 +12,13 @@
       </ul>
 
       </transition>
-      <div v-if="mobile" v-bind:class="{expandButton : !navHover, shrinkButton: navHover }" v-on:click="expand(!navHover)">
-        <i class="downArrow"></i>
+      <div v-if="mobile" v-bind:class="{expandButton : !navHover, shrinkButton: navHover }" v-on:click="expandOn(!navHover)">
+        <i  class="downArrow"></i>
       </div>
 
     </div>
 
-    <div v-on:mouseover="expand(false)" >
+    <div v-on:mouseover="expandOn(false)" >
       <transition name="router-anim" mode="out-in" >
         <router-view/>
       </transition>
@@ -44,19 +44,22 @@ export default {
     }
   },
   methods: {
-    expand: function (on) {
+    expandOn: function (on) {
+      console.log(on),
       this.navHover = on
     },
     isMobile: function () {
       if(window.innerWidth < 900) {
-        this.mobile = true
-        console.log('isMobile2')
+        //this.mobile = true
+        //console.log('isMobile2')
 
       }else {
         this.mobile = false
 
       }
       if(screen.width < 900) {
+        this.mobile = true
+        console.log('isMobile2')
         console.log('isMobile')
       }
 
@@ -85,10 +88,8 @@ export default {
 html, body {
   margin: 0;
   padding: 0;
-  /*background: url('data:image/svg+xml,\
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
-    <circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> \
-  </svg>'); */
+  background: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><circle opacity="0.7" cx="5" cy="5" r="4"  fill="#8bd081" /> </svg>');
+  background-size: 50px 50px;
 
 
 
@@ -115,6 +116,8 @@ html, body {
   position: absolute;
   top: 47%;
   left: 5%;
+
+  text-align: right;
   transition: all 1s ease;
   transform: rotate(180deg);
 }
@@ -206,6 +209,7 @@ html, body {
   .navTitle {
     letter-spacing: 2px;
     margin: 0;
+    padding-left: 10%;
   }
 
   li {

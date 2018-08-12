@@ -1,12 +1,12 @@
 <template>
   <div class="cvGrid" >
-    <div class="boxli" id="personalien"  v-on:mouseover="someHover(0)" >
+    <div class="boxli" id="personalien"  v-on:mouseover="someHover(0)" @mouseleave="reset">
       <transition>
 
 
         <div class="overlay" v-bind:class="{Off:  oO.oPers}">
 
-        <span v-if="mobile">click Me!</span>
+        <span v-if="mobile">Personalien</span>
       </div>
       </transition>
       <h2>Personalien</h2>
@@ -22,7 +22,7 @@
         <li v-for="sprachen in cv.sprachen">{{sprachen}}</li>
         <li><router-link to="/skills" ><h3>Programmiersprachen</h3></router-link></li>
       </ul>
-      <div class="overlay oLeft" v-bind:class="{Off:  oO.oSpra}">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oLeft" v-bind:class="{Off:  oO.oSpra}">        <span v-if="mobile">Sprachen</span></div>
     </div>
     <div class="boxli" id="hobbys" v-on:mouseover="someHover(2)" @mouseleave="reset">
       <h2>Hobbys</h2>
@@ -30,7 +30,7 @@
         <li v-for="hobby in cv.hobbys">{{ hobby }}</li>
       </ul>
       <transition>
-        <div class="overlay oUp" v-bind:class="{Off:  oO.oHobb}">        <span v-if="mobile">click Me!</span></div>
+        <div class="overlay oUp" v-bind:class="{Off:  oO.oHobb}">        <span v-if="mobile">Hobbys</span></div>
       </transition>
     </div>
     <div class="boxli" id="schulen" v-on:mouseover="someHover(3)"  @mouseleave="reset">
@@ -40,11 +40,11 @@
         <li>{{schulen.jahr}}</li>
         <li>{{schulen.name}}</li>
       </ul>
-      <div class="overlay oRight" v-bind:class="{Off:  oO.oSchu}">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oRight" v-bind:class="{Off:  oO.oSchu}">        <span v-if="mobile">Schulen</span></div>
     </div>
     <div class="boxli" id="referenzen" v-on:mouseover="someHover(4)" @mouseleave="reset">
       <h2>Referenzen</h2>
-      <div class="overlay oDown" v-bind:class="{Off:  oO.oRefe}">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oDown" v-bind:class="{Off:  oO.oRefe}">        <span v-if="mobile">Referenzen</span></div>
 
     </div>
     <div class="boxli" id="nebenjobs" v-on:mouseover="someHover(5)" @mouseleave="reset">
@@ -61,7 +61,7 @@
 
         </li>
       </ul>
-      <div class="overlay oLeft" v-bind:class="{Off:  oO.oNebe}">        <span v-if="mobile">click Me!</span></div>
+      <div class="overlay oLeft" v-bind:class="{Off:  oO.oNebe}">        <span v-if="mobile">Neben Jobs</span></div>
     </div>
     <div id="bottomButton" @click="showModal = true">view pdf</div>
     <modal v-if="showModal" @close="showModal = false">
@@ -126,11 +126,11 @@
 
         },
         addChecks: function() {
-          window.addEventListener('resize', this.isMobile),
+          // window.addEventListener('resize', this.isMobile),
             console.log("added")
           if(screen.width < 900) {
-            console.log('isMobile')
             this.mobile = true
+            this.someHover(0)
           }
         }
       },
@@ -167,22 +167,22 @@
               titleNation: 'Nationalität:',
               nation: 'Schweiz / Belgien',
               titleEltern: 'Eltern:',
-              eltern: 'Jean Girardin, Els Vanlangenaeker',
+              eltern: 'Jean Girardin,<br/> Els Vanlangenaeker',
               titleGeschwister: 'Geschwister:',
               geschwister: 'Philippe , Laura , Victor '
 
             },
             sprachen: {
-              titleMutter: 'Muttersprachen:',
-                deutsch: 'Deutsch',
+              titleMutter: 'Erstsprache:',
+                deutsch: 'Deutsch C1',
               title1: ' ',
-                franz: 'Französisch',
+                franz: 'Französisch C1',
               title2: ' ',
-                niederländisch: 'Niederländisch',
+                niederländisch: 'Niederländisch C1',
               title3: ' ',
                 titleLeer: ' ',
-              titleSchule: 'Schulkenntnisse:',
-                englisch: 'Englisch'
+              titleSchule: 'Schulkentnisse:',
+                englisch: 'Englisch B1'
             },
             schulen: {
               ims: {
@@ -271,6 +271,7 @@
     font-size: 120%;
     border-radius: 10px;
     padding: 15px;
+    cursor: pointer;
     background-color: #14171a;
   }
   .cvGrid {
@@ -278,7 +279,7 @@
     grid-template-columns: repeat(3, 33%);
     font-family: 'Renner*';
 
-    margin: 7%;
+    padding: 7%;
   }
   .boxli {
     margin: 10px;
@@ -482,6 +483,7 @@
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
+    height: 20vh;
     background: url('data:image/svg+xml,\
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">\
     <circle cx="50" cy="50" r="19" fill="#fff" opacity="0.2" />\
@@ -491,7 +493,7 @@
     background-color: #47cf95;
   }
   #referenzen .overlay {
-    transform: translateX(100%);
+    transform: translateY(-100%);
     background: url('../assets/cv/personalien/leBemont.jpg') center center no-repeat;
     transition: transform 1s ease;
   }
@@ -510,7 +512,7 @@
     background-color: #afd04f;
   }
   #nebenjobs .overlay {
-    transform: translateX(100%);
+    transform: translateY(100%);
     background: url('../assets/cv/neben.jpg') center center no-repeat;
     transition: transform .5s ease;
   }
@@ -519,6 +521,60 @@
    #nebenjobs ul li {
      float: left;
    }
+
+
+  @media screen and (max-width: 1300px) {
+    .cvGrid {
+      padding: 2%;
+    }
+    .boxli {
+      margin: 10px;
+      padding: 10px;
+
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    #personalien {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    #sprachen {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    #schulen {
+      grid-column-start: 2;
+      grid-column-end: 4;
+      grid-row-start: 3;
+      grid-row-end: 6;
+    }
+    #hobbys {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 3;
+      grid-row-end: 4;
+    }
+    #referenzen {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 4;
+      grid-row-end: 6;
+    }
+    #nebenjobs {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      grid-row-start: 11;
+      grid-row-end: 13;
+    }
+  }
+
 
   @media screen and (max-width: 900px) {
     .cvGrid {
@@ -570,7 +626,14 @@
       grid-row-start: 11;
       grid-row-end: 13;
     }
+    #nebenjobs img {
+      float: left;
+    }
+    #nebenjobs p {
+      float: left;
+    }
   }
+
 
 
 

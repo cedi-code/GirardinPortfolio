@@ -12,7 +12,7 @@
       </div>
     </transition>
 
-    <li v-for="site in sites" v-bind:key="site.id" transiton="site">
+    <li v-for="site in sites" v-bind:key="site.id" transiton="site" @click="$emit('close')">
       <router-link :to="site.link" >
         {{site.title}}
       </router-link>
@@ -51,7 +51,7 @@
             freizeit: {
               id: 3,
               title: 'Freizeit',
-              link: '/',
+              link: '/hobbys',
               active: false
             }
           }
@@ -224,6 +224,22 @@
       flex: 1;
     }
 
+  }
+  @media screen and (max-width: 800px) {
+    li {
+      padding: 1.5vh;
+      width: 90%;
+      display: block;
+    }
+    li:hover {
+      width: 95%;
+    }
+    li::before {
+      display: none;
+    }
+    li::after {
+      display: none;
+    }
   }
 
 

@@ -83,6 +83,9 @@
             this.dataSkills[ i ].skills = _.shuffle(this.dataSkills[i].skills)
 
           }
+          if(this.expanded) {
+            this.expandFilters()
+          }
 
         },
         orderBy: function (k,type) {
@@ -118,10 +121,6 @@
             });*/
           }
         },
-        handleResize: function () {
-          document.getElementById('filters').style.height = window.innerHeight;
-          console.log(window.innerHeight);
-        },
         expandFilters: function () {
           if(this.expanded) {
             document.getElementById('filters').style.transform = "translateX(-100%)";
@@ -133,14 +132,16 @@
           }
           this.expanded = !this.expanded;
 
-        }
+        } ,
+        addChecks: function() {
+          if(screen.width < 900) {
 
+             this.ugly(2)
+          }
+        }
       },
-      ready: function () {
-        window.addEventListener('resize', this.handleResize)
-      },
-      beforeDestroy: function () {
-        window.removeEventListener('resize', this.handleResize)
+      created() {
+        this.addChecks()
       },
       components: {
         'stat-circle' : CircleComponent
@@ -175,7 +176,7 @@
               skills: {
                   java: {
                     id: 0,
-                    percent: 90,
+                    percent: 80,
                     title: 'Java',
                     link: 'projects',
                     img: require('../assets/icons/skills/java.png'),
@@ -184,7 +185,7 @@
                   },
                   csharp: {
                     id: 1,
-                    percent: 95,
+                    percent: 85,
                     title: 'C#',
                     link: '',
                     img: require('../assets/icons/skills/c-logo.png'),
@@ -193,7 +194,7 @@
                   },
                   php: {
                     id: 2,
-                    percent: 80,
+                    percent: 70,
                     title: 'php',
                     link: '',
                     img: require('../assets/icons/skills/php.png'),
@@ -202,7 +203,7 @@
                   },
                   python: {
                     id: 3,
-                    percent: 60,
+                    percent: 30,
                     title: 'Python',
                     link: 'none',
                     img: require('../assets/icons/skills/python.png'),
@@ -211,7 +212,7 @@
                   },
                   js: {
                     id: 4,
-                    percent: 75,
+                    percent: 65,
                     title: 'Javascript',
                     link: '',
                     img: require('../assets/icons/skills/javascript2.svg.png'),
@@ -220,7 +221,7 @@
                   },
                   vue: {
                     id: 5,
-                    percent: 65,
+                    percent: 55,
                     title: 'Vue.js',
                     link: 'none',
                     type: 'Front-End',
@@ -228,7 +229,7 @@
                   },
                   css: {
                     id: 21,
-                    percent: 90,
+                    percent: 80,
                     title: 'CSS',
                     link: '',
                     img: require('../assets/icons/skills/css-3.png'),
@@ -237,7 +238,7 @@
                   },
                   jquery: {
                     id: 6,
-                    percent: 85,
+                    percent: 75,
                     title: 'jQuery',
                     link: '',
                     img: require('../assets/icons/skills/jquery_logo_001.jpg'),
@@ -246,7 +247,7 @@
                   },
                   android: {
                     id: 7,
-                    percent: 85,
+                    percent: 75,
                     title: 'Android',
                     link: '',
                     img: require('../assets/icons/Android_Studio_icon.svg.png'),
@@ -255,7 +256,7 @@
                   },
                   github: {
                     id: 8,
-                    percent: 70,
+                    percent: 60,
                     title: 'Github',
                     link: '',
                     img: require('../assets/icons/skills/github-logo.png'),
@@ -273,7 +274,7 @@
                   },
                   bbcmvc: {
                     id: 22,
-                    percent: 90,
+                    percent: 80,
                     title: 'Bbc MVC',
                     link: '',
                     img: require('../assets/icons/Logo_ICT_BB_Ostschweiz-1.png'),
@@ -282,7 +283,7 @@
                   },
                   sql: {
                     id: 10,
-                    percent: 80,
+                    percent: 75,
                     title: 'SQL',
                     link: '',
                     img: require('../assets/icons/skills/sql-file-format-symbol.png'),
@@ -291,7 +292,7 @@
                   },
                   windows: {
                     id: 11,
-                    percent: 100,
+                    percent: 70,
                     title: 'Windows',
                     link: 'none',
                     img: require('../assets/icons/skills/windows-logo-silhouette.png'),
@@ -300,7 +301,7 @@
                   },
                   linux: {
                     id: 12,
-                    percent: 55,
+                    percent: 25,
                     title: 'Linux',
                     link: 'none',
                     img: require('../assets/icons/skills/linux-logo.png'),
@@ -318,7 +319,7 @@
                   },
                   bash: {
                     id: 14,
-                    percent: 40,
+                    percent: 30,
                     title: 'bash',
                     link: 'none',
                     img: require('../assets/icons/skills/bash.png'),
@@ -327,7 +328,7 @@
                   },
                   abacus: {
                     id: 15,
-                    percent: 60,
+                    percent: 50,
                     title: 'Abacus',
                     link: 'none',
                     img: require('../assets/icons/skills/Abacus-Logo.jpg'),
@@ -336,7 +337,7 @@
                   },
                   abap: {
                     id: 16,
-                    percent: 55,
+                    percent: 25,
                     title: 'ABAP',
                     link: 'none',
                     img: require('../assets/icons/skills/abap.jpeg'),
@@ -345,7 +346,7 @@
                   },
                   sap: {
                     id: 17,
-                    percent: 40,
+                    percent: 20,
                     title: 'SAP',
                     link: 'none',
                     img: require('../assets/icons/skills/sap_logo.svg.png'),
@@ -354,7 +355,7 @@
                   },
                   photoshop: {
                     id: 18,
-                    percent: 65,
+                    percent: 45,
                     title: 'Photoshop',
                     link: 'none',
                     img: require('../assets/icons/skills/Photoshop_CC_icon.png'),
@@ -363,7 +364,7 @@
                   },
                   illustator: {
                     id: 19,
-                    percent: 85,
+                    percent: 70,
                     title: 'Illustator',
                     link: '',
                     img: require('../assets/icons/skills/1200px-Adobe_Illustrator_CC_icon.svg.png'),
@@ -372,7 +373,7 @@
                   },
                   aftereffects: {
                     id: 20,
-                    percent: 70,
+                    percent: 60,
                     title: 'After Effects',
                     link: '',
                     img: require('../assets/icons/skills/2000px-Adobe_After_Effects_CC_icon.svg.png'),
@@ -408,8 +409,7 @@
  }
 
  #elements {
-
-  width: 100%;
+   width: 100%;
    height:88vh;
    overflow-y:scroll;
  }

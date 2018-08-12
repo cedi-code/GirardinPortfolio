@@ -30,6 +30,11 @@ export default new Router({
       path: '/skills',
       name: 'Fähigkeiten',
       component: Skills
+    },
+    {
+      path: '/hobbys',
+      name: 'Hobbys',
+      component: work
     }
 
   ]

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <svg  width="100%" height="100%" >
+      <svg v-if="!isMobile"  width="100%" height="100%" >
         <line v-if="rotaion === '0' || rotaion === '270'" x1="50%" y1="50%" x2="50%" y2="0%" stroke-linecap="round"
               :style="style"
         >
@@ -50,10 +50,27 @@
 <script>
     export default {
         name: "arcType",
+        data () {
+          return {
+            isMobile: false
+          }
+        },
+
       computed: {
         style() {
           return 'stroke:rgb(0,0,0); stroke-width:' + this.thicc + 'px; stroke-dasharray: ' + this.strokeDash  + 'px, ' + this.strokeDash + 'px; '
         }
+      },
+      methods: {
+        addChecks: function() {
+          // window.addEventListener('resize', this.isMobile),
+          if(screen.width < 900) {
+            this.isMobile = true
+          }
+        }
+      },
+      created() {
+        this.addChecks()
       },
 
       props: ['rotaion',  'thicc', 'animate', 'strokeDash']

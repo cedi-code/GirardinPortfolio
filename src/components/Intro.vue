@@ -10,6 +10,8 @@
   import Lottie from '../../node_modules/vue-lottie/src/lottie';
   import * as animationData from '../assets/datei.json';
     export default {
+      // https://codepen.io/JTParrett/pen/BkDie
+      // preview!
       name: "Intro",
       components: {
         'lottie': Lottie

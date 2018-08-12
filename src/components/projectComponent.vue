@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="{ expandProject : expanded, [expandDirection]: expanded, projectBox: !expanded }"   >
+    <div v-bind:class="{ expandProject : expanded, [expandDirection]: !isMobile && expanded, ['expandCenter']: isMobile && expanded, projectBox: !expanded }"   >
 
       <div v-on:click="expandDiv(true)" v-bind:class="{ iconBox: !expanded, iconBoxExpanded: expanded, cover: imgCover } " v-bind:style="{ backgroundImage: 'url(' + imgURL + ')' }"></div>
 
@@ -25,13 +25,14 @@
       data () {
         return {
           expanded: false,
+          isMobile: false
 
         }
         },
       props: {
         expandDirection: {
           type: String,
-          default: 'expandRight'
+          default: 'expandCenter'
         },
         imgURL: {
           type: String,
@@ -47,8 +48,17 @@
         expandDiv: function (on) {
           this.expanded = on,
             console.log("expanded")
-        }
-      }
+        },
+          addChecks: function() {
+            // window.addEventListener('resize', this.isMobile),
+            if(screen.width < 900) {
+              this.isMobile = true
+            }
+          }
+        },
+        created() {
+          this.addChecks()
+        },
     }
 </script>
 

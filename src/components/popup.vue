@@ -16,10 +16,9 @@
 
           <div class="modal-body">
             Diese Information wurde als sensibel eingestuft!<br>
-            Bitte überprüfen Sie ihren Request und Tippen Sie Ihren Zugangscode, <br>
-            denn Sie via Email erhalten haben.<br>
+            Bitte überprüfen Sie ihren Request und Tippen den Zugangscode, <br>
             <br>
-            Falls Sie noch keinen Zugangscode haben, können Sie ihn hier einfordern.
+            Falls noch kein Zugangscode vorhanden ist, hier einfordern.
 
 
           </div>
