@@ -259,5 +259,9 @@
     .modal-container {
       width: 80%;
     }
+    .modal-mask {
+      width: 105%;
+      height: 110vh;
+    }
   }
 </style>

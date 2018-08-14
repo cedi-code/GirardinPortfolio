@@ -5,7 +5,7 @@
       <div class="hire">
         <div class="glass">
           <div class="hire-me">
-            hire me!
+            <router-link :to="preview">preview</router-link>
             <div class="mask"></div>
           </div>
         </div>
@@ -29,6 +29,7 @@
         return {
           navHover: false,
           mobile: false,
+          preview: '/preview',
           sites: {
             cv: {
               id: 0,
