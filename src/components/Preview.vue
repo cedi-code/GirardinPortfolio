@@ -2,7 +2,7 @@
   <div class="content">
 
     <div class="block">
-      <box-scroll v-bind:scrolled="scrollAmount"  speed="0.5" v-bind:amount="abstand" class="meIntro" >
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="0.5" v-bind:amount="abstand" class="meIntro" >
         <img src="../assets/logo.png">
       </box-scroll>
       <div class="wrapper top-align left-float iAm">
@@ -20,7 +20,7 @@
     </div>
 
 
-    <div class="tinyBlock">
+    <div v-if="!mobile" class="tinyBlock">
     </div>
 
     <div class="block">
@@ -47,7 +47,7 @@
     <div class="block">
 
       <div class="wrapper center-align center-float" >
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  speed="-1.2" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.9 : -1.2]" v-bind:amount="abstand" >
           <h2>Ich ❤ Front-End</h2>
           <div class="inBox">
           <p>Privat, erstelle ich gerne Webseiten und versuche immer etwas Neues zu Implementieren.</p>
@@ -68,12 +68,12 @@
       </div>
       <div class="imgBox boxShadow frontEndBild"></div>
 
-      <box-scroll v-bind:scrolled="scrollAmount"  speed="-1.5" v-bind:amount="abstand" class="projectBox cover">
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="-1.5" v-bind:amount="abstand" class="projectBox cover">
         <div class="glass">
         </div>
       </box-scroll>
       <div class="wrapper bottom-align  left-float"  style=" height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  speed="-1.1" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.5 : -1.1]" v-bind:amount="abstand" >
           <h2>Design</h2>
           <div class="inBox">
             <p><span>Design ist mehr als nur eine Nebensache,</span>
@@ -87,7 +87,7 @@
     </div>
     <div class="block" >
       <div class="wrapper bottom-align  right-float"  style="z-index: 10; height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  speed="-1.4" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.7 : -1.4]" v-bind:amount="abstand" >
           <h2>Mobile Apps</h2>
           <div class="inBox">
             <p><span>Mobile ist die Zukunft.</span>
@@ -125,6 +125,7 @@
         defaultOptions: {animationData: animationData},
         animationSpeed: 1,
         animRunning: true,
+        mobile: false,
       }
     },
     components: {
@@ -209,6 +210,9 @@
     },
     mounted() {
       this.delay()
+      if(screen.width < 900) {
+        this.mobile = true;
+      }
     },
     created () {
       window.addEventListener('scroll', this.handleScroll);
@@ -412,6 +416,47 @@
   }
   .boxShadow {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+  @media screen and (max-width: 1100px) {
+    .iAm {
+      padding: 2%;
+      font-size: 50px;
+      text-align: center;
+    }
+    .designBild {
+      float: right;
+      width: 60%;
+    }
+    .appquestBild {
+      width: 50%;
+
+    }
+  }
+  @media screen and (max-width: 700px) {
+    #lottie{
+      width:100%;
+      height:50vh !important;
+    }
+    .iAm {
+      padding: 1%;
+      font-size: 30px;
+      text-align: center;
+    }
+    .frontEnd {
+      background-color: #2c2c2c;
+      width: 90%;
+      color: white;
+      text-align: left;
+
+    }
+    .designBild {
+      float: right;
+      width: 90%;
+    }
+    .appquestBild {
+      width: 50%;
+
+    }
   }
 
 

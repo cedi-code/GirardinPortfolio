@@ -52,4 +52,10 @@
   h1 {
 
   }
+  @media screen and (max-width: 700px) {
+    .box {
+      margin: 5px !important;
+      padding: 5px !important;
+    }
+  }
 </style>
