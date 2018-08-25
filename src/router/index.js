@@ -6,6 +6,7 @@ import CV from '@/components/cvComponent'
 import Skills from '@/components/skillsComponent'
 import work from '@/components/workInProgress'
 import intro from '@/components/Intro'
+import Hobbys from '@/components/Hobbys'
 import preview from '@/components/Preview'
 
 Vue.use(Router)
@@ -25,7 +26,7 @@ export default new Router({
     {
       path: '/',
       name: 'Portfolio',
-      component: intro
+      component: preview
     },
     {
       path: '/skills',
@@ -35,11 +36,11 @@ export default new Router({
     {
       path: '/hobbys',
       name: 'Hobbys',
-      component: work
+      component: Hobbys
     },
     {
       path: '/preview',
-      name: 'Preview',
+      name: 'Portfolio',
       component: preview
 
     }

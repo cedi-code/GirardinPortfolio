@@ -1,8 +1,8 @@
 <template>
   <div class="content">
 
-    <div class="block">
-      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="0.5" v-bind:amount="abstand" class="meIntro" >
+    <div class="block firstBlock" >
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount" speed="0.5" v-bind:amount="abstand" class="meIntro" >
         <img src="../assets/logo.png">
       </box-scroll>
       <div class="wrapper top-align left-float iAm">
@@ -32,8 +32,9 @@
             <p>Ich liebe Herausforderungen und möchte immer meine <router-link to="/skills" >Fähigkeiten</router-link> erweitern,</p>
             <p>Für diese Portfolio, habe ich mir selber das Javascript Framework Vue.js erlernt</p>
             <br>
-            <br>
-            <br>
+            <p>Für jede Seite in diesem Portfolio habe ich mir also eine Herausforderung gestellt und immer etwas neues Implementiert.</p>
+
+            <section><router-link to="/cv" >Lebenslauf</router-link> / <router-link to="/skills" >Fähigkeiten</router-link> / <router-link to="/projects" >Projekte</router-link></section>
             <br>
             <br>
             <span>(Alle Effekte auser dem Intro, brauchen keine Plugins)</span>
@@ -68,12 +69,9 @@
       </div>
       <div class="imgBox boxShadow frontEndBild"></div>
 
-      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="-1.5" v-bind:amount="abstand" class="projectBox cover">
-        <div class="glass">
-        </div>
-      </box-scroll>
+
       <div class="wrapper bottom-align  left-float"  style=" height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.5 : -1.1]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.6 : -1.1]" v-bind:amount="abstand" >
           <h2>Design</h2>
           <div class="inBox">
             <p><span>Design ist mehr als nur eine Nebensache,</span>
@@ -84,10 +82,14 @@
           </div>
         </box-scroll>
       </div>
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="-1.7" v-bind:amount="abstand" class="projectBox cover">
+        <div class="glass">
+        </div>
+      </box-scroll>
     </div>
     <div class="block" >
       <div class="wrapper bottom-align  right-float"  style="z-index: 10; height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.7 : -1.4]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.8 : -1.4]" v-bind:amount="abstand" >
           <h2>Mobile Apps</h2>
           <div class="inBox">
             <p><span>Mobile ist die Zukunft.</span>
@@ -98,8 +100,22 @@
       </div>
       <div class="imgBox boxShadow appquestBild"></div>
     </div>
-    <div class="block">
+    <div class="block" v-if="!mobile">
+      <div class="wrapper bottom-align  center-float"  style="height: 100%">
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -1 : -1]" v-bind:amount="abstand" >
+          <h2>Regional Championships</h2>
+          <div class="inBox">
+            <p>In der Kategorie "Application Development" wurde ich 43 von 95 Teilnehmer mit 44%,  </p>
+            <p>Nächstes Jahr möchte ich mind. unter den Top 20 kommen. Welche Kategorie, spielt mir momentan noch keine Rolle.</p>
+            <br>
+            <span><a>Rangliste</a></span>
+          </div>
+        </box-scroll>
+      </div>
       <div class="imgBox boxShadow designBild"></div>
+    </div>
+    <div class="block">
+      <div class="imgBox boxShadow backEndBild"></div>
     </div>
 
 
@@ -126,6 +142,7 @@
         animationSpeed: 1,
         animRunning: true,
         mobile: false,
+        scrollSpeed:4.5,
       }
     },
     components: {
@@ -183,7 +200,7 @@
         var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
         var trackLength = docheight - winheight
         var pctScrolled = Math.floor(scrollTop/trackLength * 100)
-        this.scrolled = Math.round(pctScrolled / 3);
+        this.scrolled = Math.round(pctScrolled / this.scrollSpeed);
         console.log(this.scrolled)
 
       },
@@ -212,6 +229,7 @@
       this.delay()
       if(screen.width < 900) {
         this.mobile = true;
+        this.scrollSpeed = 4;
       }
     },
     created () {
@@ -241,6 +259,7 @@
   a {
     color: #42b983;
     cursor: pointer;
+    text-decoration: underline;
   }
 
   #lottie{
@@ -318,7 +337,7 @@
     font-weight: 200;
   }
   .content {
-    height: 5000px;
+
     font-family: 'Renner*';
   }
   .block {
@@ -353,6 +372,12 @@
   }
   .frontEndBild {
     background: url("../assets/cv/personalien/leBemont.jpg") center center no-repeat;
+    background-size: cover;
+  }
+  .backEndBild {
+    width: 70%;
+    margin-top: 10%;
+    background: url("../assets/cv/ict.jpg") center center no-repeat;
     background-size: cover;
   }
   .appquestBild {
@@ -437,6 +462,12 @@
       width:100%;
       height:50vh !important;
     }
+    .block {
+      height: 80vh;
+    }
+    .firstBlock {
+      height: 40vh;
+    }
     .iAm {
       padding: 1%;
       font-size: 30px;
@@ -449,12 +480,23 @@
       text-align: left;
 
     }
+    .backEndBild {
+      width: 100%;
+      margin: 0;
+      background-position: 70%;
+    }
     .designBild {
       float: right;
       width: 90%;
     }
     .appquestBild {
       width: 50%;
+
+    }
+    .introBild {
+      width: 70%;
+      float: right;
+
 
     }
   }

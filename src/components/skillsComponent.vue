@@ -19,6 +19,11 @@
             <div class="slider"></div>
             <span class="typeName">worst</span>
           </label>
+          <label class="switch" >
+            <input type="checkbox" class="check"  v-on:click="changePercange()" >
+            <div class="slider"></div>
+            <span class="typeName">Percentage</span>
+          </label>
             <button v-on:click="shuffle" class="sbutton switch">shuffle</button>
 
 
@@ -32,7 +37,7 @@
           <h2>{{group.groupTitle}}</h2>
           <transition-group name="flip-list" tag="span">
             <li v-for="skill in group.skills" v-bind:key="skill.id">
-              <stat-circle v-bind:img-type="skill.img" v-bind:link="skill.link" v-bind:percentage="skill.percent">{{skill.title}}</stat-circle>
+              <stat-circle v-bind:img-type="skill.img" v-bind:show-percange="percantegeOn" v-bind:status="skill.status" v-bind:link="skill.link" v-bind:percentage="skill.percent">{{skill.title}}</stat-circle>
             </li>
           </transition-group>
         </ul>
@@ -73,6 +78,9 @@
           }
 
 
+        },
+        changePercange: function() {
+          this.percantegeOn = !this.percantegeOn;
         },
         // https://lodash.com/docs/4.17.10
         shuffle: function () {
@@ -153,6 +161,7 @@
         return {
           expanded: false,
           checked: false,
+          percantegeOn: false,
           filters: [
             {
               isChecked: false,
@@ -181,7 +190,8 @@
                     link: 'projects',
                     img: require('../assets/icons/skills/java.png'),
                     type: 'Back-End',
-                    language: true
+                    language: true,
+                    status: 'Stark'
                   },
                   csharp: {
                     id: 1,
@@ -190,7 +200,8 @@
                     link: '',
                     img: require('../assets/icons/skills/c-logo.png'),
                     type: 'Back-End',
-                    language: true
+                    language: true,
+                    status: 'Stark'
                   },
                   php: {
                     id: 2,
@@ -199,7 +210,8 @@
                     link: '',
                     img: require('../assets/icons/skills/php.png'),
                     type: 'Back-End',
-                    language: true
+                    language: true,
+                    status: 'Erfahren'
                   },
                   python: {
                     id: 3,
@@ -208,7 +220,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/python.png'),
                     type: 'Back-End',
-                    language: true
+                    language: true,
+                    status: 'Neu'
                   },
                   js: {
                     id: 4,
@@ -217,7 +230,8 @@
                     link: '',
                     img: require('../assets/icons/skills/javascript2.svg.png'),
                     type: 'Front-End',
-                    language: false
+                    language: false,
+                    status: 'Fähig'
                   },
                   vue: {
                     id: 5,
@@ -225,7 +239,8 @@
                     title: 'Vue.js',
                     link: 'none',
                     type: 'Front-End',
-                    language: false
+                    language: false,
+                    status: 'Amateur'
                   },
                   css: {
                     id: 21,
@@ -234,7 +249,8 @@
                     link: '',
                     img: require('../assets/icons/skills/css-3.png'),
                     type: 'Front-End',
-                    language: false
+                    language: false,
+                    status: 'Geschickt'
                   },
                   jquery: {
                     id: 6,
@@ -243,7 +259,8 @@
                     link: '',
                     img: require('../assets/icons/skills/jquery_logo_001.jpg'),
                     type: 'Front-End',
-                    language: false
+                    language: false,
+                    status: 'Fähig'
                   },
                   android: {
                     id: 7,
@@ -252,7 +269,8 @@
                     link: '',
                     img: require('../assets/icons/Android_Studio_icon.svg.png'),
                     type: 'Back-End',
-                    language: false
+                    language: false,
+                    status: 'Stark'
                   },
                   github: {
                     id: 8,
@@ -261,7 +279,8 @@
                     link: '',
                     img: require('../assets/icons/skills/github-logo.png'),
                     type: 'Platform',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   laravel: {
                     id: 9,
@@ -270,7 +289,8 @@
                     link: '',
                     img: require('../assets/icons/skills/LaravelLogo.png'),
                     type: 'MVC',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   bbcmvc: {
                     id: 22,
@@ -279,7 +299,9 @@
                     link: '',
                     img: require('../assets/icons/Logo_ICT_BB_Ostschweiz-1.png'),
                     type: 'MVC',
-                    language: false
+                    language: false,
+                    status: 'Erfahren'
+
                   },
                   sql: {
                     id: 10,
@@ -288,7 +310,8 @@
                     link: '',
                     img: require('../assets/icons/skills/sql-file-format-symbol.png'),
                     type: 'Script',
-                    language: false
+                    language: false,
+                    status: 'Erfahren'
                   },
                   windows: {
                     id: 11,
@@ -297,7 +320,9 @@
                     link: 'none',
                     img: require('../assets/icons/skills/windows-logo-silhouette.png'),
                     type: 'Operating system',
-                    language: false
+                    language: false,
+                    status: 'Fähig'
+
                   },
                   linux: {
                     id: 12,
@@ -306,7 +331,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/linux-logo.png'),
                     type: 'Operating system',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   macOS: {
                     id: 13,
@@ -315,7 +341,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/ios-logo.png'),
                     type: 'Operating system',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   bash: {
                     id: 14,
@@ -324,7 +351,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/bash.png'),
                     type: 'Script',
-                    language: true
+                    language: true,
+                    status: 'Neu'
                   },
                   abacus: {
                     id: 15,
@@ -333,7 +361,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/Abacus-Logo.jpg'),
                     type: 'Applications & Design',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   abap: {
                     id: 16,
@@ -342,7 +371,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/abap.jpeg'),
                     type: 'Back-End',
-                    language: true
+                    language: true,
+                    status: 'Bekannt'
                   },
                   sap: {
                     id: 17,
@@ -351,7 +381,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/sap_logo.svg.png'),
                     type: 'Applications & Design',
-                    language: false
+                    language: false,
+                    status: 'Bekannt'
                   },
                   photoshop: {
                     id: 18,
@@ -360,7 +391,8 @@
                     link: 'none',
                     img: require('../assets/icons/skills/Photoshop_CC_icon.png'),
                     type: 'Applications & Design',
-                    language: false
+                    language: false,
+                    status: 'Amateur'
                   },
                   illustator: {
                     id: 19,
@@ -369,7 +401,8 @@
                     link: '',
                     img: require('../assets/icons/skills/1200px-Adobe_Illustrator_CC_icon.svg.png'),
                     type: 'Applications & Design',
-                    language: false
+                    language: false,
+                    status: 'Geschickt'
                   },
                   aftereffects: {
                     id: 20,
@@ -378,7 +411,8 @@
                     link: '',
                     img: require('../assets/icons/skills/2000px-Adobe_After_Effects_CC_icon.svg.png'),
                     type: 'Applications & Design',
-                    language: false
+                    language: false,
+                    status: 'Geschickt'
                   }
               }
             }

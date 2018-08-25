@@ -26,7 +26,7 @@
 
 
           <div class="modal-footer">
-            <form >
+            <form>
               <div class="form-group">
                 <input type="password" id="pass-user" name="pass-user" class="control-inputs" minlength="" maxlength="100" autocomplete="off" value="" required="required">
                 <label for="pass-user" class="control-label">
@@ -34,11 +34,12 @@
                 </label>
                 <i class="bar"></i>
               </div>
-
-              <button class="modal-default-button" @click="$emit('close')">
+              <button class="modal-default-button">
                 OK
               </button>
+
             </form>
+
           </div>
         </div>
       </div>
@@ -48,7 +49,18 @@
 
 <script>
     export default {
-        name: "popup"
+        name: "popup",
+        methods: {
+          requestSensible: function () {
+            this.$http.get('URL', {
+              headers: {
+                'Authorization': 'Basic a3Rt...MzQ='
+              }
+            }).then(response => {
+              console.log('response', response)
+            })
+          }
+        }
     }
 </script>
 

@@ -9,7 +9,7 @@
             <animate  attributeType="css" attributeName="stroke-dashoffset"
                       from="358" v-bind:to='getAnimTo()'  dur="0.5s" repeatCount="1"       calcMode="spline"       fill="freeze" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" />
           </circle>
-          <text x="62%" y="70%">{{ percentage }}%</text>
+          <text :x="[showPercange ? '62%' : '60%']"  :y="[showPercange ? '70%' : '66%']" v-bind:style="showPercange ? bigText : ''">{{ showPercange ? percentage + '%' : status  }}</text>
         </svg>
         <span class="blurr"><slot ></slot></span>
       </div>
@@ -25,6 +25,13 @@
 <script>
     export default {
         name: "CircleProgressBar",
+        data() {
+          return {
+            bigText: {
+              fontSize: '5px'
+            }
+          }
+        },
         props: {
           percentage: Number,
           type: Object, // filter arten TODO nacharbeiten!
@@ -35,8 +42,17 @@
           link: {
             default: 'projects',
             type: String
+          },
+          showPercange: {
+            default: false,
+            type: Boolean
+          },
+          status: {
+            default: 'normal',
+            type: String,
           }
-          // TODO typen nach farben sortieren :)
+
+
         },
         methods: {
           getAnimTo() {
@@ -79,9 +95,10 @@
       stroke-linecap: round;
     }
     text {
-      font-size: 5px;
+      font-size: 3.5px;
       text-anchor: middle;
       fill: #9de593;
+      transition: font-size 0.25s ;
     }
   }
   .skill {
