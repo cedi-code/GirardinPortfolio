@@ -208,11 +208,12 @@
 
             },
             hobbys: {
-              smash: 'Smash?',
               reisen: 'Reisen',
               programmieren: 'Programmieren',
-              serien: 'Serien..schauen ka',
-              ka: 'Ha schüsch kenni hobbys me..'
+              fitness: 'Fitness',
+              gamen: 'Gamen',
+              serien: 'Serien schauen',
+              trompete: 'Trompete Spielen'
             },
             nebenjobs: {
               südkurve: {
@@ -472,7 +473,7 @@
   }
   #hobbys .overlay {
     transform: translateX(-100%);
-    background: url("../assets/cv/travel.jpg") center center no-repeat;
+    background: url("../assets/cv/hobby/travel.jpg") center center no-repeat;
     transition: transform .8s ease;
   }
   #hobbys:hover {
