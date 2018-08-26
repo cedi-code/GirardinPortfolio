@@ -2,14 +2,14 @@
   <div class="content">
 
     <div class="block firstBlock" >
-      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount" speed="0.5" v-bind:amount="abstand" class="meIntro" >
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  v-bind:delay-time="animationSpeed" speed="0.5" v-bind:amount="abstand" class="meIntro" >
         <img src="../assets/logo.png">
       </box-scroll>
       <div class="wrapper top-align left-float iAm">
-        <box-scroll v-bind:scrolled="scrollAmount"  speed="-1.5" v-bind:amount="abstand" >
+        <box-scroll v-bind:scrolled="scrollAmount"  speed="-1.5" v-bind:delay-time="animationSpeed"  v-bind:amount="abstand" >
           <h1>I</h1>
         </box-scroll>
-        <box-scroll v-bind:scrolled="scrollAmount"  speed="-1" v-bind:amount="abstand">
+        <box-scroll v-bind:scrolled="scrollAmount"  speed="-1" v-bind:delay-time="animationSpeed" v-bind:amount="abstand">
           <h1>AM</h1>
         </box-scroll>
 
@@ -26,15 +26,15 @@
     <div class="block">
       <div class="wrapper">
         <!-- TODO  fancy Border like in CSS secrets!!!! -->
-        <box-scroll class="firstBox boxShadow" v-bind:scrolled="scrollAmount" padding="0" margin="20" speed="-1.5" v-bind:amount="abstand" >
+        <box-scroll class="firstBox boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed" padding="0" margin="20" speed="-1.5" v-bind:amount="abstand" >
           <div class="inBox">
-            <h2>Willkommen in meinem Portfolio.</h2>
+            <h2>Willkommen zu meinem Portfolio.</h2>
             <p>Ich liebe Herausforderungen und möchte immer meine <router-link to="/skills" >Fähigkeiten</router-link> erweitern,</p>
-            <p>Für diese Portfolio, habe ich mir selber das Javascript Framework Vue.js erlernt</p>
+            <p>Für dieses Portfolio, habe ich mir  das Javascript Framework Vue.js erlernt</p>
             <br>
-            <p>Für jede Seite in diesem Portfolio habe ich mir also eine Herausforderung gestellt und immer etwas neues Implementiert.</p>
+            <p>Für jede Seite in diesem Portfolio stellte ich mir eine Herausforderung und implementierte immer etwas Neues.</p>
 
-            <section><router-link to="/cv" >Lebenslauf</router-link> / <router-link to="/skills" >Fähigkeiten</router-link> / <router-link to="/projects" >Projekte</router-link></section>
+            <section><router-link to="/cv" >Lebenslauf</router-link> / <router-link to="/skills" >Fähigkeiten</router-link> / <router-link to="/projects" >Projekte</router-link> / <router-link to="/hobbys" >Freizeit</router-link></section>
             <br>
             <br>
             <span>(Alle Effekte auser dem Intro, brauchen keine Plugins)</span>
@@ -48,14 +48,14 @@
     <div class="block">
 
       <div class="wrapper center-align center-float" >
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.9 : -1.2]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -0.9 : -1.2]" v-bind:amount="abstand" >
           <h2>Ich ❤ Front-End</h2>
           <div class="inBox">
           <p>Privat, erstelle ich gerne Webseiten und versuche immer etwas Neues zu Implementieren.</p>
-          <p>Javascript und CSS bereitet mir viel Spass, aber es kann manchmal auch etwas unübersichtlich werden..</p>
+          <p>Javascript und CSS bereiten mir viel Spass, aber es kann manchmal auch etwas unübersichtlich werden..</p>
 
           <p>Dieses Problem habe ich jetzt behoben in dem ich ein Javascript Framework gelerent habe<br/>
-            und Erfahrungen mit dem "Larvavel templating engine" Balde gesammelt habe. </p>
+            und Erfahrungen mit dem "Laravel templating engine" Blade gesammelt habe. </p>
 
             <span><router-link to="/projects" >Siehe Projekte</router-link></span>
           </div>
@@ -71,30 +71,30 @@
 
 
       <div class="wrapper bottom-align  left-float"  style=" height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.6 : -1.1]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -0.6 : -1.1]" v-bind:amount="abstand" >
           <h2>Design</h2>
           <div class="inBox">
             <p><span>Design ist mehr als nur eine Nebensache,</span>
               <br><br/>Der Benutzer soll sich bei einer Applikation immer zurechtfindet.</p>
-            <p> Mir ist es wichtig, das meine Projekte ein saubers Layout haben das den Benutzer anpsrechen soll</p>
+            <p> Mir ist es wichtig, dass meine Projekte ein sauberes Layout haben, dass den Benutzern anpsrechen soll</p>
             <br/>
             <span><router-link to="/projects" >Einige Webdesigns</router-link></span>
           </div>
         </box-scroll>
       </div>
-      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount"  speed="-1.7" v-bind:amount="abstand" class="projectBox cover">
+      <box-scroll v-if="!mobile" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  speed="-1.7" v-bind:amount="abstand" class="projectBox cover">
         <div class="glass">
         </div>
       </box-scroll>
     </div>
     <div class="block" >
       <div class="wrapper bottom-align  right-float"  style="z-index: 10; height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -0.8 : -1.4]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -0.8 : -1.4]" v-bind:amount="abstand" >
           <h2>Mobile Apps</h2>
           <div class="inBox">
             <p><span>Mobile ist die Zukunft.</span>
-            <p>Am Oktober 2017 schreibte ich mich für ein Bootcamp organisiert von der Berner & Rapperswiller Hochschule namens AppQuest </p>
-            <p>Alle 3 Wochen, mussten wir eine vorgegebene App entwickeln. Zu Schluss wurden alle fünf Apps in einem Treasure Hunt getestet</p>
+            <p>Im Oktober 2017 schrieb ich mich für ein Bootcamp, organisiert von der Berner & Rapperswiller Hochschule namens AppQuest, ein. </p>
+            <p>Alle 3 Wochen, musste ich eine vorgegebene App entwickeln. Am Schluss wurden alle fünf Apps in einem Treasure Hunt getestet</p>
           </div>
         </box-scroll>
       </div>
@@ -102,11 +102,11 @@
     </div>
     <div class="block" v-if="!mobile">
       <div class="wrapper bottom-align  center-float"  style="height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount"  v-bind:speed="[mobile ? -1 : -1]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -1 : -1]" v-bind:amount="abstand" >
           <h2>Regional Championships</h2>
           <div class="inBox">
-            <p>In der Kategorie "Application Development" wurde ich 43 von 95 Teilnehmer mit 44%,  </p>
-            <p>Nächstes Jahr möchte ich mind. unter den Top 20 kommen. Welche Kategorie, spielt mir momentan noch keine Rolle.</p>
+            <p>In der Kategorie "Application Development" wurde ich 43ste von 95 Teilnehmern mit 44%. </p>
+            <p>Nächstes Jahr möchte ich mindestens unter den Top 20 kommen. Welche Kategorie, spielt mir momentan noch keine Rolle.</p>
             <br>
             <span><a>Rangliste</a></span>
           </div>
@@ -139,7 +139,7 @@
         number: 0,
         displayNumber: 0,
         defaultOptions: {animationData: animationData},
-        animationSpeed: 1,
+        animationSpeed: 0.8,
         animRunning: true,
         mobile: false,
         scrollSpeed:4.5,
@@ -222,18 +222,30 @@
 
       onSpeedChange: function (animSpeed) {
         this.anim.setSpeed(animSpeed);
+      },
+      changeSpeed: function() {
+        this.abstand = window.innerWidth / 16
       }
-
     },
     mounted() {
       this.delay()
       if(screen.width < 900) {
         this.mobile = true;
+        this.abstand = 120;
         this.scrollSpeed = 4;
       }
     },
     created () {
+      if(!this.mobile) {
+
+        this.abstand = window.innerWidth / 16;
+
+        window.addEventListener('resize', this.changeSpeed);
+      }
+      // TODO auf dem Ipad sieht es noch schrecklich aus!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
       window.addEventListener('scroll', this.handleScroll);
+
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll);

@@ -353,7 +353,7 @@
               ictSkills: {
                 content: {
                   title: 'Regional Championships',
-                  icon: require('../assets/icons/Logo_ICT_BB_Ostschweiz-1.png'),
+                  icon: require('../assets/icons/ict.png'),
                   description: ' <span>Ende März trat ich unter der Kategorie "Application Development" bei den IT-Regionalmeisterschaften mit</span>' +
                   '<p>Dies ist zwar kein Projekt, trozdem konnte ich während dieser Zeit viel Erfahurngen sammeln mit [M120] <br/>' +
                   'Am Schluss landete ich von 95 Kandidaten auf den 43 Platz, was ich aber nächstes Jahr verbessern möchte!\n' +

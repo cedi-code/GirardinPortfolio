@@ -297,7 +297,7 @@
                     percent: 80,
                     title: 'Bbc MVC',
                     link: '',
-                    img: require('../assets/icons/Logo_ICT_BB_Ostschweiz-1.png'),
+                    img: require('../assets/icons/ict.png'),
                     type: 'MVC',
                     language: false,
                     status: 'Erfahren'

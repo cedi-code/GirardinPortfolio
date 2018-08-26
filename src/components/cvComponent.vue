@@ -173,12 +173,15 @@
 
             },
             sprachen: {
-              titleMutter: 'Erstsprache:',
-                deutsch: 'Deutsch C1',
-              title1: ' ',
-                franz: 'Französisch C1',
-              title2: ' ',
-                niederländisch: 'Niederländisch C1',
+              title2: 'Muttersprache',
+              niederländisch: 'Niederländisch',
+              title1: 'Vatersprache ',
+              franz: 'Französisch',
+              titleMutter: 'Umgangsprache:',
+
+                deutsch: 'Deutsch',
+
+
               title3: ' ',
                 titleLeer: ' ',
               titleSchule: 'Schulkentnisse:',

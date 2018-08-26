@@ -37,6 +37,7 @@
       data () {
         return {
           activeHobby: -1,
+          isSmall: false,
           allHobbys: {
             reisen: {
               title: 'Reisen',
@@ -65,32 +66,59 @@
       methods: {
         switchHobby: function (direction) {
 
-          document.getElementById("ho" + this.activeHobby).style.width = "8%";
+          if (window.innerWidth > 1100) {
+            document.getElementById("ho" + this.activeHobby).style.width = "8%";
+          } else {
+            document.getElementById("ho" + this.activeHobby).style.height = "15vh";
+          }
+
           var checkH = this.activeHobby + direction;
-          if(checkH >= 0 && checkH < 5) {
+          if (checkH >= 0 && checkH < 5) {
 
             var elem = document.getElementById("ho" + checkH)
             elem.click();
-            elem.style.width = "50%";
+            if (window.innerWidth > 1100) {
+              elem.style.width = "50%";
+            } else {
+              elem.style.height = "50vh";
+            }
 
-          }else {
+
+          } else {
             this.resetHobbys();
           }
         },
         onHobby: function (id) {
-          for(var i = 0;i < 5; i++) {
-            if(i != id) {
-              document.getElementById("ho" + i).style.width = "8%";
+          for (var i = 0; i < 5; i++) {
+            if (i != id) {
+              console.log(window.innerWidth);
+              if (window.innerWidth > 1100) {
+                document.getElementById("ho" + i).style.width = "8%";
+
+              } else {
+                document.getElementById("ho" + i).style.height = "15vh";
+              }
               this.callHobbyList(i);
+
             }
 
           }
-          document.getElementById("ho" + id).style.width = "50%";
+          if (window.innerWidth > 1100) {
+            document.getElementById("ho" + id).style.width = "50%";
+          } else {
+            document.getElementById("ho" + id).style.height = "50vh";
+          }
+
           this.activeHobby = id;
         },
-        resetHobbys: function() {
-          for(var i = 0;i < 5; i++) {
+        resetHobbys: function () {
+          for (var i = 0; i < 5; i++) {
+            if (window.innerWidth > 1100) {
               document.getElementById("ho" + i).style.width = "15%";
+            } else {
+              document.getElementById("ho" + i).style.height = "15vh";
+            }
+
 
           }
         },
@@ -112,7 +140,37 @@
               this.$refs.ho4.closeHobby();
               break;
           }
+        },
+        removeStyles: function() {
+          if(window.innerWidth > 1100 && this.isSmall) {
+            this.isSmall = false;
+            for (var i = 0; i < 5; i++) {
+              var elem = document.getElementById("ho" + i)
+              if (elem.style.removeProperty) {
+                elem.style.removeProperty('height');
+              } else {
+                elem.style.removeAttribute('height');
+              }
+            }
+
+          }else if(!this.isSmall) {
+            this.isSmall = true;
+            for (var i = 0; i < 5; i++) {
+              var elem = document.getElementById("ho" + i)
+              if (elem.style.removeProperty) {
+                elem.style.removeProperty('width');
+              } else {
+                elem.style.removeAttribute('width');
+              }
+            }
+          }
+        },
+        addChecks: function() {
+          window.addEventListener('resize', this.removeStyles)
         }
+      },
+      created() {
+        this.addChecks()
       },
       components: {
         'hobby' : Hobby,
@@ -136,9 +194,44 @@
   li {
 
     width: 15%;
+    height: 50vh;
     margin: 1%;
     border: 1px solid white;
     display: inline-block;
     transition: width 1s ease;
+  }
+  @media screen and (max-width: 1100px) {
+    ul {
+      width: 100%;
+      list-style-type: none;
+      margin: auto;
+      text-align: left;
+      white-space: nowrap;
+      padding: 0;
+    }
+    li {
+      height: 15vh;
+      width: 100%;
+      margin: 1%;
+      border: 1px solid white;
+      display: block;
+      transition: height 1s ease;
+    }
+    .content {
+      padding: 7%;
+
+    }
+
+  }
+  @media screen and (max-width: 700px) {
+    .content {
+      padding: 3%;
+
+    }
+    li {
+
+      margin: 2%;
+
+    }
   }
 </style>

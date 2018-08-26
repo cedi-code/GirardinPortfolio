@@ -64,7 +64,7 @@
   .hobbyContent {
     padding: 10px;
     background-color: #8bd081;
-    height: 50vh;
+
     position: relative;
     overflow: hidden;
     transition: all 1.75s cubic-bezier(0.19, 1, 0.22, 1);
@@ -101,7 +101,8 @@
 
   }
   .hobbyText p {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,1);
+
   }
   .downArrow {
     border: solid white;
@@ -142,6 +143,19 @@
     .hobbyContent:hover .mask {
       transform: translate3d(50%, 100px, 0) rotate3d(0, 0, 1, 90deg);
     }
+    .closed h2 {
+      transform: none;
+    }
+    h2 {
+      transform: rotate(90deg) translateY(80px) translateX(90px);
+    }
+
 
   }
+  @media screen and (max-width: 700px) {
+    .hobbyContent {
+      padding: 0px;
+    }
+  }
+
 </style>
