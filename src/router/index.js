@@ -7,7 +7,8 @@ import Skills from '@/components/skillsComponent'
 import work from '@/components/workInProgress'
 import intro from '@/components/Intro'
 import Hobbys from '@/components/Hobbys'
-import preview from '@/components/Preview'
+import preview from '@/components/Preview2'
+import preview2 from '@/components/Preview'
 
 Vue.use(Router)
 
@@ -42,6 +43,12 @@ export default new Router({
       path: '/preview',
       name: 'Portfolio',
       component: preview
+
+    },
+    {
+      path: '/oldpreview',
+      name: 'Portfolio',
+      component: preview2
 
     }
 

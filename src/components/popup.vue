@@ -3,9 +3,7 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <svg   class="cross"  viewbox="0 0 100 100" @click="$emit('close')">
-            <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" />
-          </svg>
+
           <h2>Sensible Daten</h2>
           <hr>
           <div class="request">
@@ -19,7 +17,7 @@
             Bitte überprüfen Sie ihren Request und Tippen den Zugangscode, <br>
             <br>
             Falls noch kein Zugangscode vorhanden ist, hier einfordern.
-
+            {{infoTest}}
 
           </div>
 
@@ -48,18 +46,22 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
     export default {
         name: "popup",
+        data() {
+           return {
+             infoTest: null
+           }
+        },
         methods: {
           requestSensible: function () {
-            this.$http.get('URL', {
-              headers: {
-                'Authorization': 'Basic a3Rt...MzQ='
-              }
-            }).then(response => {
-              console.log('response', response)
-            })
+
           }
+        },
+        mounted() {
+
         }
     }
 </script>

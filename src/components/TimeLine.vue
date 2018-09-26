@@ -79,8 +79,7 @@
         </template>
         <template slot="buttons">
           <a v-for="button in projects.FlashCode.content.buttons" v-bind:href="button.link" v-bind:target="button.target" >
-            <button v-if="button.sensible" @click="showSensible(button.request)">{{button.title}}</button>
-            <button v-else>{{button.title}}</button>
+            <button >{{button.title}}</button>
           </a>
         </template>
     </project>
@@ -273,7 +272,7 @@
 
                       target: '',
                       request: 'learnable Doku',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=learnable-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     }
                   }
                 }
@@ -290,12 +289,13 @@
                       title: 'ük',
                       target: '',
                       request: 'üK Noten',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=üK-Noten&from=https://www.cedricgirardin.ch/#/projects',
                     },
-                    playstore: {
-                      title: 'Play Store',
+                    dokumore: {
+                      title: 'Mehr Infos',
                       link: '',
-                      target: ''
+                      target: '',
+                      link:'https://data.cedricgirardin.ch/login?request=BadiApp-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     }
                   }
                 }
@@ -315,7 +315,7 @@
                       title: 'dokumentation',
                       target: '',
                       request: 'FlashCode Dokumentation',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=FlashCode-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     },
                     playstroe: {
                       title: 'Play Store',
@@ -339,7 +339,7 @@
                       title: 'dokumentation',
 
                       request: '10ner Doku',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=10ner-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     },
                     website: {
                       title: 'Webseite',
@@ -382,7 +382,7 @@
                       title: 'dokumentation',
 
                       request: 'Cedilabs dokumentation',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=cedilabs-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     },
                     webseite: {
                       title: 'Webseite',
@@ -403,7 +403,7 @@
                     doku: {
                       title: 'dokumentation',
                       request: 'App Quest dokumentation',
-                      sensible: true,
+                      link:'https://data.cedricgirardin.ch/login?request=AppQuest-Dokumentation&from=https://www.cedricgirardin.ch/#/projects',
                     },
                     host: {
                       title: 'Host',

@@ -2,7 +2,7 @@
   <div>
 
     <transition name="expand">
-      <div class="hire">
+      <div class="hire" v-if="previewOn">
         <div class="glass">
           <div class="hire-me">
             <router-link :to="preview">preview</router-link>
@@ -25,6 +25,12 @@
 <script>
     export default {
       name: "navigationItems",
+      props: {
+        previewOn: {
+
+          default: true
+        }
+      },
       data() {
         return {
           navHover: false,

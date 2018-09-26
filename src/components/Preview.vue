@@ -28,11 +28,11 @@
         <!-- TODO  fancy Border like in CSS secrets!!!! -->
         <box-scroll class="firstBox boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed" padding="0" margin="20" speed="-1.5" v-bind:amount="abstand" >
           <div class="inBox">
-            <h2>Willkommen zu meinem Portfolio.</h2>
+            <h2>Willkommen zu meiner Webseite</h2>
             <p>Ich liebe Herausforderungen und möchte immer meine <router-link to="/skills" >Fähigkeiten</router-link> erweitern,</p>
             <p>Für dieses Portfolio, habe ich mir  das Javascript Framework Vue.js erlernt</p>
             <br>
-            <p>Für jede Seite in diesem Portfolio stellte ich mir eine Herausforderung und implementierte immer etwas Neues.</p>
+            <p>Für jede Seite stellte ich mir eine Herausforderung und implementierte immer etwas Neues.</p>
 
             <section><router-link to="/cv" >Lebenslauf</router-link> / <router-link to="/skills" >Fähigkeiten</router-link> / <router-link to="/projects" >Projekte</router-link> / <router-link to="/hobbys" >Freizeit</router-link></section>
             <br>
@@ -75,8 +75,9 @@
           <h2>Design</h2>
           <div class="inBox">
             <p><span>Design ist mehr als nur eine Nebensache,</span>
-              <br><br/>Der Benutzer soll sich bei einer Applikation immer zurechtfindet.</p>
+              <br><br/>Der Benutzer soll sich bei einer Applikation immer zurechtfinden.</p>
             <p> Mir ist es wichtig, dass meine Projekte ein sauberes Layout haben, dass den Benutzern anpsrechen soll</p>
+            <p>Ich benutze auch gerne After Effects und Illustrator, von Adobe, gerne in der Freizeit</p>
             <br/>
             <span><router-link to="/projects" >Einige Webdesigns</router-link></span>
           </div>
@@ -102,7 +103,7 @@
     </div>
     <div class="block" v-if="!mobile">
       <div class="wrapper bottom-align  center-float"  style="height: 100%">
-        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -1 : -1]" v-bind:amount="abstand" >
+        <box-scroll class="frontEnd  boxShadow" v-bind:scrolled="scrollAmount" v-bind:delay-time="animationSpeed"  v-bind:speed="[mobile ? -1 : -1.05]" v-bind:amount="abstand" >
           <h2>Regional Championships</h2>
           <div class="inBox">
             <p>In der Kategorie "Application Development" wurde ich 43ste von 95 Teilnehmern mit 44%. </p>
@@ -119,6 +120,12 @@
     </div>
 
 
+    <div class="nav expand" style="position: absolute" >
+        <ul class="ulnav">
+          <nav-comp v-bind:preview-on="showPreviewButton" v-on:close="navHover = !mobile"></nav-comp>
+        </ul>
+    </div>
+
 
   </div>
 </template>
@@ -127,19 +134,21 @@
   import sqaureBox from './scrollBox';
   import Lottie from '../../node_modules/vue-lottie/src/lottie';
   import * as animationData from '../assets/datei.json';
+  import navigation from './navigationItems';
 
   export default {
     name: 'HelloWorld',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
+        showPreviewButton: false,
         scrolled: 0,
         windowY: 0,
-        abstand: 120,
+        abstand: 150,
         number: 0,
         displayNumber: 0,
         defaultOptions: {animationData: animationData},
-        animationSpeed: 0.8,
+        animationSpeed: 1,
         animRunning: true,
         mobile: false,
         scrollSpeed:4.5,
@@ -147,7 +156,8 @@
     },
     components: {
       'boxScroll' : sqaureBox,
-      'lottie': Lottie
+      'lottie': Lottie,
+      'nav-comp' : navigation
     },
     computed: {
       scroll() {
@@ -224,7 +234,7 @@
         this.anim.setSpeed(animSpeed);
       },
       changeSpeed: function() {
-        this.abstand = window.innerWidth / 16
+        this.abstand = window.innerWidth / 14
       }
     },
     mounted() {
@@ -238,7 +248,7 @@
     created () {
       if(!this.mobile) {
 
-        this.abstand = window.innerWidth / 16;
+        this.abstand = window.innerWidth / 14;
 
         window.addEventListener('resize', this.changeSpeed);
       }
@@ -432,6 +442,7 @@
   .center-align {
     align-items: center;
   }
+
 
   .projectBox {
     overflow: hidden;

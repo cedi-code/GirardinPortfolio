@@ -38,14 +38,23 @@
       <ul v-for="schulen in cv.schulen">
         <line-comp thicc="2" color="true"></line-comp>
         <li>{{schulen.jahr}}</li>
-        <li>{{schulen.name}}</li>
+        <li>{{schulen.name}} <br/>
+            <a v-if="schulen.zeugniss" v-bind:href="schulen.zeugniss">Zuegniss</a>
+        </li>
       </ul>
       <div class="overlay oRight" v-bind:class="{Off:  oO.oSchu}">        <span v-if="mobile">Schulen</span></div>
     </div>
     <div class="boxli" id="referenzen" v-on:mouseover="someHover(4)" @mouseleave="reset">
       <h2>Referenzen</h2>
       <div class="overlay oDown" v-bind:class="{Off:  oO.oRefe}">        <span v-if="mobile">Referenzen</span></div>
-
+      <ul>
+        <li v-for="pers in cv.referenzen">
+          <div class="referenzBox">
+            <img v-bind:src="pers.bild">
+            <p>{{ pers.title }}</p>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="boxli" id="nebenjobs" v-on:mouseover="someHover(5)" @mouseleave="reset">
       <h2>Nebenjobs</h2>
@@ -63,10 +72,10 @@
       </ul>
       <div class="overlay oLeft" v-bind:class="{Off:  oO.oNebe}">        <span v-if="mobile">Neben Jobs</span></div>
     </div>
-    <div id="bottomButton" @click="showModal = true">view pdf</div>
-    <modal v-if="showModal" @close="showModal = false">
-      <template slot="request">lebenslauf</template>
-    </modal>
+    <a href="https://data.cedricgirardin.ch/login?request=lebenslauf&from=https://www.cedricgirardin.ch/#/cv">
+      <div id="bottomButton" >view pdf</div>
+    </a>
+
 
   </div>
 </template>
@@ -167,9 +176,11 @@
               titleNation: 'Nationalität:',
               nation: 'Schweiz / Belgien',
               titleEltern: 'Eltern:',
-              eltern: 'Jean Girardin,<br/> Els Vanlangenaeker',
+              elternpap: 'Jean Girardin,',
+              titelEltern2: ' ',
+              elternmam: 'Els Vanlangenaeker',
               titleGeschwister: 'Geschwister:',
-              geschwister: 'Philippe , Laura , Victor '
+              geschwister: 'Philippe 2000 , Laura 2008 , Victor 2012 '
 
             },
             sprachen: {
@@ -190,11 +201,13 @@
             schulen: {
               ims: {
                 jahr: '2016-2020',
-                name: 'IMS, bwd Bern'
+                name: 'IMS, bwd Bern',
+                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/bwd?request=zeugniss-bwd&from=https://www.cedricgirardin.ch/#/cv'
               },
               gibb: {
                 jahr: '2016-2019',
-                name: 'gibb'
+                name: 'gibb',
+                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/gibb?request=zeugniss-gibb&from=https://www.cedricgirardin.ch/#/cv'
               },
               bvs: {
                 jahr: '2015-2016',
@@ -217,6 +230,17 @@
               gamen: 'Gamen',
               serien: 'Serien schauen',
               trompete: 'Trompete Spielen'
+            },
+            referenzen: {
+              andy: {
+                bild: require('../assets/logo.png'),
+                title :'Andy Bula'
+              },
+              schaffner: {
+                bild: require('../assets/logo.png'),
+                title :'Manuel Schafner'
+              }
+
             },
             nebenjobs: {
               südkurve: {
@@ -315,6 +339,28 @@
   .boxli:hover {
     transform: scale(0.95);
 
+  }
+  .referenzBox {
+    display: table;
+    color: black;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 70%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+  }
+  .referenzBox p {
+    vertical-align: middle;
+    display: table-cell;
+    width: 70%;
+  }
+  .referenzBox img {
+    border-radius: 50%;
+    display: table-cell;
+    max-height: 80px;
+    max-width: 80px;
+    margin: 0;
   }
   .nebenjobBox img {
     max-width: 250px;
@@ -501,6 +547,11 @@
     background: url('../assets/cv/personalien/leBemont.jpg') center center no-repeat;
     transition: transform 1s ease;
   }
+  #referenzen ul li {
+    float: left;
+    width: 40%;
+
+  }
 
 
   #nebenjobs{
@@ -570,6 +621,11 @@
       grid-column-end: 2;
       grid-row-start: 4;
       grid-row-end: 6;
+      height: auto;
+    }
+    #referenzen ul li {
+      float: left;
+      width: 100%;
     }
     #nebenjobs {
       grid-column-start: 1;
@@ -624,6 +680,7 @@
       grid-row-start: 9;
       grid-row-end: 11;
     }
+
     #nebenjobs {
       grid-column-start: 1;
       grid-column-end: 4;

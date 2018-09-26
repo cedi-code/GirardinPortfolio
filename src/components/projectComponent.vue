@@ -1,7 +1,9 @@
 <template>
     <div v-bind:class="{ expandProject : expanded, [expandDirection]: (!isMobile && expanded), ['expandCenter2']: isMobile && expanded, projectBox: !expanded }"   >
 
-      <div v-on:click="expandDiv(true)" v-bind:class="{ iconBox: !expanded, iconBoxExpanded: expanded, cover: imgCover } " v-bind:style="{ backgroundImage: 'url(' + imgURL + ')' }"></div>
+      <div v-on:click="expandDiv(true)" v-bind:class="{ iconBox: !expanded, iconBoxExpanded: expanded, cover: imgCover } " v-bind:style="{ backgroundImage: 'url(' + imgURL + ')' }">
+        <lottie v-if="imgLottie" :options="defaultOptions"    v-on:animCreated="handleAnimation"/>
+      </div>
 
       <div v-if="expanded"  v-bind:class="{contentProject: expanded, nonExpandProject: !expanded }">
         <slot name="content"></slot>
@@ -20,12 +22,19 @@
 </template>
 
 <script>
+  import Lottie from '../../node_modules/vue-lottie/src/lottie';
+  import * as animationData from '../assets/datei.json';
     export default {
-        name: "projectComponent",
+      name: "projectComponent",
+      components: {
+        'lottie': Lottie
+      },
       data () {
         return {
           expanded: false,
-          isMobile: false
+          isMobile: false,
+          defaultOptions: {animationData: animationData},
+          animationSpeed: 1
 
         }
         },
@@ -39,6 +48,10 @@
           default: require('../assets/logo.png')
         },
         imgCover: {
+          type: Boolean,
+          default: false
+        },
+        imgLottie: {
           type: Boolean,
           default: false
         }
