@@ -1,7 +1,7 @@
 <template>
   <div class="ul_icons">
     <span class="li_element" v-for="icon in icons">
-      <a target="_blank" v-bind:href="icon.link">
+      <a v-bind:target="icon.target" v-bind:href="icon.link">
         <img  v-bind:class="{ img_3 : true}" v-bind:alt="icon.title" v-bind:src="icon.src"/>
       </a>
     </span>
@@ -14,16 +14,25 @@
       data () {
         return {
           icons: {
+            daten: {
+              title: 'daten',
+              src: require('../assets/key.png'),
+              link: 'https://data.cedricgirardin.ch/papers',
+              target: ''
+            },
             gmail: {
               src: require('../assets/gmail-logo.png'),
               title: 'gmail',
-              link: 'mailto:cedric.girardin@bwdbern.ch?Einladung Bewerbungsgespräch'
+              link: 'mailto:cedric.girardin@bwdbern.ch?Einladung Bewerbungsgespräch',
+              target: '_blank'
             },
             twitter: {
               src: require('../assets/twitter-logo-silhouette.png'),
               title: 'twitter',
-              link: 'https://twitter.com/cedi__boy'
+              link: 'https://twitter.com/cedi__boy',
+              target: '_blank'
             }
+
           }
         }
       }

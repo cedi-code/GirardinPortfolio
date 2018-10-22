@@ -78,9 +78,9 @@
     background-color: white;
     height: 30vh;
     width: 30vh;
-    background: url("../assets/logo.png") center center no-repeat ;
+    background: url("../assets/cedric2.png") center center no-repeat;
     transition: all 0.5s ease;
-    background-color: white;
+    background-size: cover;
     border-radius: 50%;
 
   }
@@ -97,8 +97,9 @@
   .glass {
     height: 30vh;
     width: 30vh;
-    background: url('../assets/logo.png') center center no-repeat; /* blurry image */
+    background: url('../assets/cedric.png') center center no-repeat; /* blurry image */
     opacity: 0;
+    background-size: cover;
     border-radius: 50%;
     background-color: #d8d8d8;
     display: flex;
@@ -208,14 +209,12 @@
       top: auto;
       height: 20vh;
       width: 20vh;
-      background-size: 80%;
 
 
     }
     .glass {
       height: 20vh;
       width: 20vh;
-      background-size: 80%;
     }
     li {
       padding: 1vh;

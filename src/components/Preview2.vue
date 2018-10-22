@@ -12,7 +12,10 @@
             <h1>AM</h1>
         </div>
         <div class="wrapper2 wrapper  bottom-align center-float">
+          <div class="meIntro" v-if="mobile"  v-on:click="$refs.fullpage.api.moveTo(1, 0);">
+            <img src="../assets/logo.png"/>
 
+          </div>
           <div class="down">
             <h2>⯆      &#11138;  ⯅ <br/>
               <transition name="nav-fade2" mode="out-in" >
@@ -30,9 +33,9 @@
 
           <div class="firstBox boxShadow">
             <div class="inBox">
-              <h2>Willkommen zu meiner Webseite</h2>
-              <p>Ich liebe Herausforderungen und möchte immer meine <router-link to="/skills" >Fähigkeiten</router-link> erweitern,</p>
-              <p>Für dieses Portfolio, habe ich mir  das Javascript Framework Vue.js erlernt</p>
+              <h2>Willkommen auf meiner Webseite</h2>
+              <p>Ich liebe Herausforderungen und möchte immer meine <router-link to="/skills" >Fähigkeiten</router-link> erweitern.</p>
+              <p>Für dieses Portfolio habe ich mir  das Javascript Framework Vue.js erlernt</p>
               <br>
               <p>Für jede Seite stellte ich mir eine Herausforderung und implementierte immer etwas Neues.</p>
 
@@ -50,22 +53,24 @@
           <div class="frontEnd  boxShadow" id="frontBox" >
             <h2>Ich ❤ Front-End</h2>
             <div class="inBox">
-              <p>Privat, erstelle ich gerne Webseiten und versuche immer etwas Neues zu Implementieren.</p>
-              <p>Javascript und CSS bereiten mir viel Spass, aber es kann manchmal auch etwas unübersichtlich werden..</p>
+              <p>Privat erstelle ich gerne Webseiten und versuche immer etwas Neues zu Implementieren.</p>
+              <p>Javascript und CSS bereiten mir viel Spass, aber es kann manchmal auch etwas unübersichtlich werden...</p>
 
-              <p>Dieses Problem habe ich jetzt behoben in dem ich ein Javascript Framework gelerent habe<br/>
-                und Erfahrungen mit dem "Laravel templating engine" Blade gesammelt habe. </p>
+              <p>Dieses Problem habe ich jetzt behoben, in dem ich ein Javascript Framework gelerent habe<br/>
+                und Erfahrungen mit dem Laravel templating engine Blade gesammelt habe. </p>
 
               <span><router-link to="/projects" >Siehe Projekte</router-link></span>
             </div>
             <br>
 
           </div>
-
-          <div  class="projectBox cover" v-if="!mobile">
-            <div class="glass">
+          <a href="http://cedilabs.de" target="_blank">
+            <div  class="projectBox cover" v-if="!mobile">
+              <div class="glass">
+              </div>
             </div>
-          </div>
+          </a>
+
         </div>
       </div>
       <div class="section" id="design">
@@ -77,10 +82,10 @@
               <div class="frontEnd  boxShadow"  id="designBox" >
                 <h2>Design</h2>
                 <div class="inBox">
-                  <p><span>Design ist mehr als nur eine Nebensache,</span>
+                  <p><span>Design ist mehr als nur eine Nebensache.</span>
                     <br><br/>Der Benutzer soll sich bei einer Applikation immer zurechtfinden.</p>
-                  <p> Mir ist es wichtig, dass meine Projekte ein sauberes Layout haben, dass den Benutzern anpsrechen soll</p>
-                  <p>Ich benutze auch gerne After Effects und Illustrator, von Adobe, gerne in der Freizeit</p>
+                  <p> Mir ist es wichtig, dass meine Projekte ein sauberes Layout haben, welches den Benutzern anpsrechen soll.</p>
+                  <p>Ich benutze auch gerne After Effects und Illustrator (von Adobe) in der Freizeit</p>
                   <br/>
                   <span><router-link to="/projects" >Einige Webdesigns</router-link></span>
                 </div>
@@ -95,7 +100,7 @@
                 <div class="inBox">
                   <p><span>Mobile ist die Zukunft.</span>
                   <p>Im Oktober 2017 schrieb ich mich für ein Bootcamp, organisiert von der Berner & Rapperswiller Hochschule namens AppQuest, ein. </p>
-                  <p>Alle 3 Wochen, musste ich eine vorgegebene App entwickeln. Am Schluss wurden alle fünf Apps in einem Treasure Hunt getestet</p>
+                  <p>Alle drei Wochen musste ich eine vorgegebene App entwickeln. Am Schluss wurden alle fünf Apps in einem Treasure Hunt getestet.</p>
                 </div>
               </div>
 
@@ -147,6 +152,7 @@
 
         if(screen.width < 900) {
           this.mobile = true;
+          console.log(this.mobile);
         }
         setTimeout(function () {
           this.toLong = true;
@@ -226,6 +232,7 @@
     z-index: 10;
     bottom: 5%;
     transition: 0.5s ease;
+    cursor: pointer;
   }
   .meIntro:hover {
     transform: rotate(-180deg);
@@ -470,13 +477,24 @@
     }
     .wrapper .down h2 {
       width: 70%;
+
+    }
+    .wrapper {
+      height: 100vh;
+    }
+    .inBox h2 {
+      font-size: 200%;
+    }
+    .inBox  {
+      font-size: 90%;
     }
     .frontEnd {
       background-color: #2c2c2c;
-      width: 95%;
+      width: 100%;
       font-size: 100%;
       color: white;
       text-align: left;
+      max-height: 100vh;
 
     }
     .firstBox {
@@ -487,6 +505,9 @@
     #design {
       padding: 1vh;
       font-size: 70%;
+    }
+    .meIntro {
+      bottom: 30%;
     }
 
   }

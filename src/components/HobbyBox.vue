@@ -6,11 +6,14 @@
       </h2>
       <transition name="nav-fade" mode="out-in">
       <tr v-if="expanded">
+
         <td > <i v-on:click="nextHobby"  class="downArrow arrowLeft"></i></td>
         <td  class="hobbyText">
           <p><slot name="content"></slot></p>
         </td>
+
         <td >  <i v-on:click="backHobby"  class="downArrow arrowRight"></i></td>
+
       </tr>
       </transition>
       <div v-bind:class="{mask: !expanded}"></div>
@@ -91,19 +94,20 @@
   }
   td {
     display: table-cell;
-
+    position: relative;
 
   }
   .hobbyText {
     width: 100%;
-    padding: 5px;
 
 
   }
   .hobbyText p {
-    background-color: rgba(0,0,0,1);
-
+    background-color: #3a3a3a;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
+
   .downArrow {
     border: solid white;
     border-width: 0 5px 5px 0;
@@ -135,6 +139,15 @@
     transition: all 1.75s cubic-bezier(0.19, 1, 0.22, 1);
     width: 80vh;
   }
+
+  .nav-fade-enter-active, .nav-fade-leave-active {
+    transition: opacity 1s ease;
+  }
+  .nav-fade-enter, .nav-fade-leave-to
+    /* .component-fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+
   @media screen and (max-width: 1100px) {
     .hobbyContent .mask {
       transform: translate3d(-120%, -200px, 0) rotate3d(0, 0, 1, 45deg);

@@ -60,7 +60,14 @@
           },
           viewProject() {
             if(this.link !== 'none') {
-              this.$router.push({ path: this.link })
+              if(this.link[0] === '/') {
+                this.$router.push({ path: this.link })
+              }
+              else {
+                window.open(this.link);
+              }
+              //
+
             }
 
             //this.$router.push({ name: 'user', params: { userId }})

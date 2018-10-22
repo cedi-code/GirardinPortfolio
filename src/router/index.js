@@ -36,7 +36,7 @@ export default new Router({
     },
     {
       path: '/hobbys',
-      name: 'Hobbys',
+      name: 'Freizeit',
       component: Hobbys
     },
     {

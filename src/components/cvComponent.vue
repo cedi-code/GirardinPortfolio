@@ -29,6 +29,7 @@
       <ul >
         <li v-for="hobby in cv.hobbys">{{ hobby }}</li>
       </ul>
+      <router-link to="/hobbys">Mehr Infos</router-link>
       <transition>
         <div class="overlay oUp" v-bind:class="{Off:  oO.oHobb}">        <span v-if="mobile">Hobbys</span></div>
       </transition>
@@ -39,7 +40,7 @@
         <line-comp thicc="2" color="true"></line-comp>
         <li>{{schulen.jahr}}</li>
         <li>{{schulen.name}} <br/>
-            <a v-if="schulen.zeugniss" v-bind:href="schulen.zeugniss">Zuegniss</a>
+            <a v-if="schulen.zeugniss" v-bind:href="schulen.zeugniss">Zeugniss</a>
         </li>
       </ul>
       <div class="overlay oRight" v-bind:class="{Off:  oO.oSchu}">        <span v-if="mobile">Schulen</span></div>
@@ -202,12 +203,12 @@
               ims: {
                 jahr: '2016-2020',
                 name: 'IMS, bwd Bern',
-                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/bwd?request=zeugniss-bwd&from=https://www.cedricgirardin.ch/#/cv'
+                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/bwd?request=zeugniss-bwd'
               },
               gibb: {
                 jahr: '2016-2019',
                 name: 'gibb',
-                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/gibb?request=zeugniss-gibb&from=https://www.cedricgirardin.ch/#/cv'
+                zeugniss: 'https://data.cedricgirardin.ch/papers/qualifications/gibb?request=zeugniss-gibb'
               },
               bvs: {
                 jahr: '2015-2016',
@@ -497,7 +498,7 @@
 
   #schulen .overlay {
     transform: translateX(100%);
-    background: url('../assets/cv/schulen/Gebäude_Linde.jpg') center center no-repeat;
+    background: url('../assets/cv/schulen/Gebaude_Linde.jpg') center center no-repeat;
     transition: transform 1s ease;
   }
 
@@ -523,7 +524,7 @@
   #hobbys .overlay {
     transform: translateX(-100%);
     background: url("../assets/cv/hobby/travel.jpg") center center no-repeat;
-    transition: transform .8s ease;
+    transition: transform .7s ease;
   }
   #hobbys:hover {
 
